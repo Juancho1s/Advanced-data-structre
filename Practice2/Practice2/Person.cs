@@ -42,7 +42,7 @@ namespace Practice2
                 {
                     if (licenses[i].getType().Equals(newLicense.getType()))
                     {
-                        if (licenses[i].getStatus().Equals(newLicense.getStatus()))
+                        if (licenses[i].getStatus() == false)
                         {
                             licenses.Remove(licenses[i]);
                             licenses.Add(newLicense);
