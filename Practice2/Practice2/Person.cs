@@ -14,7 +14,7 @@ namespace Practice2
         private int age;
         private string gender;
         private string keyCode;
-        private bool suspicionOfFraud;
+        //private bool suspicionOfFraud;
         private string theWorstBrand;
         private string theWorstColor;
 
@@ -74,7 +74,7 @@ namespace Practice2
                 vehicles.Add(newVehicle);
                 if (vehicles.Count > 5)
                 {
-                    suspicionOfFraud = true;
+                    //suspicionOfFraud = true;
                 }
             }
             if (gender.Equals("Man"))
@@ -87,7 +87,7 @@ namespace Practice2
                 vehicles.Add(newVehicle);
                 if (vehicles.Count > 5)
                 {
-                    suspicionOfFraud = true;
+                    //suspicionOfFraud = true;
                 }
             }
         }
@@ -100,9 +100,9 @@ namespace Practice2
                 {
                     for (int j = 0; j < vehicles.Count; j++)
                     {
-                        if (vehicles[i].Equals(vehicleModel) & vehicles[i].Equals(vehicleBrand))
+                        if (vehicles[j].getModel().Equals(vehicleModel) & vehicles[j].getBrand().Equals(vehicleBrand))
                         {
-                            vehicles.RemoveAt(i);
+                            vehicles.Remove(vehicles[j]);
                             return;
                         }
                     }
