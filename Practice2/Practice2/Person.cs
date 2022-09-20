@@ -117,17 +117,6 @@ namespace Practice2
         public string getKeyCode()
         {
             return keyCode;
-        }
-
-        private void checking(string[] item, string[] looking)
-        {
-            for (int i = 0; i < item.Length; i++)
-            {
-                for(int j = 0; j < item.Length; j++)
-                {
-
-                }
-            }
-        }
+        }        
     }
 }
