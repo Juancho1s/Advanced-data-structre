@@ -68,28 +68,33 @@ namespace Practice2
         {
             if (gender.Equals("Woman"))
             {
-                if (newVehicle.getColor().Equals(favoriteColor))
+                for (int j = 0; j < favoriteColor.Length; j++)
                 {
-                    vehicles.Add(newVehicle);                 
+                    if (favoriteColor[j].Equals(newVehicle.getColor()))
+                    {
+                        vehicles.Add(newVehicle);
+                        if (vehicles.Count > 5)
+                        {
+                            suspicionOfFraud = true;
+                        }
+                    }
                 }
-                if (vehicles.Count > 5)
-                {
-                    suspicionOfFraud = true;
-                }
-                return;                
             }
             if (gender.Equals("Man"))
             {
-                if (newVehicle.getBrand().Equals(favoriteBrand))
+                for (int j = 0; j < favoriteBrand.Length; j++)
                 {
-                    Console.WriteLine("This car is the worst for this client.");
-                    return;
+                    if (favoriteBrand[j].Equals(newVehicle.getBrand()))
+                    {
+                        vehicles.Add(newVehicle);
+                        if (vehicles.Count > 5)
+                        {
+                            suspicionOfFraud = true;
+                        }
+                    }
                 }
-                vehicles.Add(newVehicle);
-                if (vehicles.Count > 5)
-                {
-                    suspicionOfFraud = true;
-                }
+
+                
             }
         }
 
@@ -117,17 +122,6 @@ namespace Practice2
         public string getKeyCode()
         {
             return keyCode;
-        }
-
-        private void checking(string[] item, string[] looking)
-        {
-            for (int i = 0; i < item.Length; i++)
-            {
-                for(int j = 0; j < item.Length; j++)
-                {
-
-                }
-            }
         }
     }
 }
