@@ -14,7 +14,7 @@ namespace Practice2
         private int age;
         private string gender;
         private string keyCode;
-        private bool suspicionOfFraud = false;
+        private bool suspicionOfFraud;
         private string[] favoriteBrand;
         private string [] favoriteColor;
 
@@ -29,15 +29,14 @@ namespace Practice2
             this.age = age;
             this.favoriteBrand = favoriteBrand;
             this.favoriteColor = favoriteColor;
-            this.keyCode = keyCode;
-
+            this.keyCode = keyCode;            
             this.vehicles = new List<Vehicle>();
             this.licenses = new List<License>();
         }
 
         public void addLicense(License newLicense)
         {
-            if (age < 90)
+            if (age < 90 & newLicense.getStatus())
             {
                 for (int i = 0; i < licenses.Count; i++)
                 {
@@ -68,28 +67,33 @@ namespace Practice2
         {
             if (gender.Equals("Woman"))
             {
-                if (newVehicle.getColor().Equals(favoriteColor))
+                for (int j = 0; j < favoriteColor.Length; j++)
                 {
-                    vehicles.Add(newVehicle);                 
+                    if (favoriteColor[j].Equals(newVehicle.getColor()))
+                    {
+                        vehicles.Add(newVehicle);
+                        if (vehicles.Count > 5)
+                        {
+                            suspicionOfFraud = true;
+                        }
+                    }
                 }
-                if (vehicles.Count > 5)
-                {
-                    suspicionOfFraud = true;
-                }
-                return;                
             }
             if (gender.Equals("Man"))
             {
-                if (newVehicle.getBrand().Equals(favoriteBrand))
+                for (int j = 0; j < favoriteBrand.Length; j++)
                 {
-                    Console.WriteLine("This car is the worst for this client.");
-                    return;
+                    if (favoriteBrand[j].Equals(newVehicle.getBrand()))
+                    {
+                        vehicles.Add(newVehicle);
+                        if (vehicles.Count > 5)
+                        {
+                            suspicionOfFraud = true;
+                        }
+                    }
                 }
-                vehicles.Add(newVehicle);
-                if (vehicles.Count > 5)
-                {
-                    suspicionOfFraud = true;
-                }
+
+                
             }
         }
 
@@ -117,6 +121,6 @@ namespace Practice2
         public string getKeyCode()
         {
             return keyCode;
-        }        
+        }
     }
 }
