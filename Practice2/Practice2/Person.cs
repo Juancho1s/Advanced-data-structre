@@ -14,7 +14,7 @@ namespace Practice2
         private int age;
         private string gender;
         private string keyCode;
-        private bool suspicionOfFraud = false;
+        private bool suspicionOfFraud;
         private string[] favoriteBrand;
         private string [] favoriteColor;
 
@@ -29,15 +29,14 @@ namespace Practice2
             this.age = age;
             this.favoriteBrand = favoriteBrand;
             this.favoriteColor = favoriteColor;
-            this.keyCode = keyCode;
-
+            this.keyCode = keyCode;            
             this.vehicles = new List<Vehicle>();
             this.licenses = new List<License>();
         }
 
         public void addLicense(License newLicense)
         {
-            if (age < 90)
+            if (age < 90 & newLicense.getStatus())
             {
                 for (int i = 0; i < licenses.Count; i++)
                 {
