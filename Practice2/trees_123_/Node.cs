@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace trees_123_
 {
@@ -9,51 +10,47 @@ namespace trees_123_
         private int rootNode { get; set; }
         private Node? leftNode { get; set; }
         private Node? rightNode { get; set; }
+        private bool x = false;
 
         public Node(int data)
         {
             this.data = data;
-        }        
-
-        public void addNode2(Node newNode)
+        }
+        
+        public bool checking(Node tree)
         {
+
+            if (x == true) 
+            {                
+                return x = true;
+            }
+            if (tree.rightNode == null)
+            {
+                if (tree.leftNode == null)
+                {
+                    return x ;
+                }                
+            }
+            else
+            {
+                if (tree.leftNode != null)
+                {
+                    x = checking(tree.leftNode);
+                }                
+            }
+            
+        }
+
+        public void addNode(Node newNode)
+        {
+            this.leftNode = newNode;
+
             if (newNode.Equals(data))
             {
                 Console.WriteLine("This node is already in the list.");
                 return;
             }
             if (leftNode == null)
-            {
-                leftNode = newNode;
-                newNode.setRootNode(rootNode);
-                return;
-            }
-            else if (rightNode == null)
-            {
-                rightNode = newNode;
-                newNode.setRootNode(rootNode);
-                return;
-            }
-            if (leftNode != null)
-            {
-                if (rightNode != null)
-                {
-                    leftNode.addNode2(newNode);
-                    return;
-                }
-                
-
-            }            
-        }
-        
-        public void addNode(Node newNode)
-        {
-            if (newNode.Equals(data))
-            {
-                Console.WriteLine("This node is already in the list.");
-                return;
-            }
-            if (leftNode == null )
             {
                 leftNode = newNode;
                 newNode.rootNode = rootNode;
@@ -92,7 +89,7 @@ namespace trees_123_
                     }
                 }
             }
-            
+
         }
         private void insert(Node newNode)
         {

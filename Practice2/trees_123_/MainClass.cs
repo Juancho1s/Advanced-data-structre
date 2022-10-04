@@ -25,9 +25,10 @@ internal class MainClass
         firstNode.addNode(fifthNode);
         firstNode.addNode(sixthhNode);
         firstNode.addNode(seventhNode);
-        firstNode.addNode(eightNode);
-        firstNode.addNode(ninthNode);
-        firstNode.addNode(thenthNode);
-        firstNode.addNode(eleventhNode);
+        firstNode.checking(firstNode);
+        //firstNode.addNode(eightNode);
+        //firstNode.addNode(ninthNode);
+        //firstNode.addNode(thenthNode);
+        //firstNode.addNode(eleventhNode);
     }
 }
