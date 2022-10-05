@@ -24,11 +24,16 @@ internal class MainClass
         firstNode.addNode(fifthNode);
         firstNode.addNode(sixthhNode);
         firstNode.addNode(seventhNode);
+<<<<<<< HEAD
         firstNode.addNode(eightNode);
 
         firstNode.checking(firstNode, eightNode);
 
 
+=======
+        firstNode.checking(firstNode);
+        //firstNode.addNode(eightNode);
+>>>>>>> 14c47756ef83339aac0e1d3d405aec3a5af46799
         //firstNode.addNode(ninthNode);
         //firstNode.addNode(thenthNode);
         //firstNode.addNode(eleventhNode);
