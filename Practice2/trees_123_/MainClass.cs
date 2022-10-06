@@ -20,7 +20,12 @@ internal class MainClass
 
         firstNode.insertNewNode(firstNode, secondNode);
         firstNode.insertNewNode(firstNode, thirdNode, 1);
-        firstNode.insertNewNode(firstNode, fourthNode, 1);
+        firstNode.insertNewNode(firstNode, fourthNode, 0, 2);
+        firstNode.insertNewNode(firstNode, fifthNode, 1, 2);
+        firstNode.insertNewNode(firstNode, sixthhNode, 0, 3);
+        firstNode.insertNewNode(firstNode, seventhNode, 1, 3);
+
+
 
     }
 }
