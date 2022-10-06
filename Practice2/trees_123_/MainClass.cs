@@ -18,24 +18,9 @@ internal class MainClass
         Node thenthNode = new Node(10);
         Node eleventhNode = new Node(11);
 
-        firstNode.addNode(secondNode);
-        firstNode.addNode(thirdNode);
-        firstNode.addNode(fourthNode);
-        firstNode.addNode(fifthNode);
-        firstNode.addNode(sixthhNode);
-        firstNode.addNode(seventhNode);
-<<<<<<< HEAD
-        firstNode.addNode(eightNode);
+        firstNode.insertNewNode(firstNode, secondNode);
+        firstNode.insertNewNode(firstNode, thirdNode, 1);
+        firstNode.insertNewNode(firstNode, fourthNode, 1);
 
-        firstNode.checking(firstNode, eightNode);
-
-
-=======
-        firstNode.checking(firstNode);
-        //firstNode.addNode(eightNode);
->>>>>>> 14c47756ef83339aac0e1d3d405aec3a5af46799
-        //firstNode.addNode(ninthNode);
-        //firstNode.addNode(thenthNode);
-        //firstNode.addNode(eleventhNode);
     }
 }

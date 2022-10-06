@@ -7,102 +7,109 @@ namespace trees_123_
     {
 
         private int data { get; set; }
-        private int rootNode { get; set; }
+        private int rootData { get; set; }
         private Node? leftNode { get; set; }
         private Node? rightNode { get; set; }
         private bool x = false;
 
+        /*Constructor*/
         public Node(int data)
         {
             this.data = data;
         }
+        //////////////////////
 
-        public bool checking(Node tree, Node newNode)
+        /*Methods*/
+        public void insertNewNode(Node tree, Node newNode, int refToLR, int refToFather)
         {
-            if (x == true) 
-            {                
-                return x = true;
+            if (tree.data == refToFather)
+            {
+                if (tree.leftNode == null & refToLR == 0)
+                {
+                    tree.leftNode = newNode;
+                    this.x = true;
+                    return;
+                }
+                else if (tree.rightNode == null & refToLR == 1)
+                {
+                    tree.rightNode = newNode;
+                    this.x = true;
+                    return;
+                }                
+                Console.WriteLine("The father already has a child in the position spesified.");                
             }
-            if (tree.rightNode == null)
+            else
+            {
+                if (this.x == true)
+                {
+                    return;
+                }
+                if (tree.leftNode != null)
+                {
+                    insertNewNode(tree.leftNode, newNode, refToFather);
+                }
+                if (tree.rightNode != null)
+                {
+                    insertNewNode(tree.rightNode, newNode, refToFather);
+                }
+            }
+            Console.WriteLine("The node spesified as father was not found.");
+        }
+
+        public void insertNewNode(Node tree, Node newNode, int refToFather)
+        {
+            if (tree.data == refToFather)
             {
                 if (tree.leftNode == null)
                 {
-                    insert(newNode);
-                    return x = false ;
-                }                
+                    tree.leftNode = newNode;
+                    this.x = true;
+                    return;
+                }
+                else if (tree.rightNode == null)
+                {
+                    tree.rightNode = newNode;
+                    this.x = true;
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("The father has all its children.");
+                    return;
+                }
             }
             else
             {
-                if (tree.leftNode != null)
+                if (this.x == true)
                 {
-                    x = checking(tree.rightNode, newNode);
-                }                
+                    return;
+                }
+                if (tree.leftNode != null )
+                {
+                    insertNewNode(tree.leftNode, newNode, refToFather);
+                }
+                if (tree.rightNode != null)
+                {
+                    insertNewNode(tree.rightNode, newNode, refToFather);
+                }
             }
-            return x;
+            Console.WriteLine("The node spesified as father was not found.");
         }
 
-        public void addNode(Node newNode)
+        public void insertNewNode(Node tree, Node newNode)
         {
-            this.leftNode = newNode;
-
-            if (newNode.Equals(data))
+            if (tree.leftNode != null)
             {
-                Console.WriteLine("This node is already in the list.");
-                return;
-            }
-            if (leftNode == null)
-            {
-                leftNode = newNode;
-                newNode.rootNode = rootNode;
-            }
-            else if (rightNode == null)
-            {
-                rightNode = newNode;
-                newNode.rootNode = rootNode;
-            }
-            else if (leftNode != null)
-            {
-                if (leftNode.leftNode == null)
-                {
-                    leftNode.addNode(newNode);
-                }
-                else if (leftNode.rightNode == null)
-                {
-                    leftNode.addNode(newNode);
-                }
-                else if (rightNode != null)
-                {
-                    if (leftNode != null)
-                    {
-                        if (rightNode.leftNode == null)
-                        {
-                            rightNode.addNode(newNode);
-                        }
-                        else if (rightNode.rightNode == null)
-                        {
-                            rightNode.addNode(newNode);
-                        }
-                        else
-                        {
-                            insert(newNode);
-                        }
-                    }
-                }
-            }
-
-        }
-        private void insert(Node newNode)
-        {
-            if (leftNode == null)
-            {
-                leftNode = newNode;
+                insertNewNode(tree.leftNode, newNode);
             }
             else
             {
-                leftNode.insert(newNode);
+                tree.leftNode = newNode;
             }
         }
+        //////////////////////
 
+        /*Getters and setters*/
         public void setLeftNode(Node newNode)
         {
             this.leftNode = newNode;
@@ -123,11 +130,12 @@ namespace trees_123_
 
         public void setRootNode(int rootNode)
         {
-            this.rootNode = rootNode;
+            this.rootData = rootNode;
         }
         public int getRootNode()
         {
-            return this.rootNode;
+            return this.rootData;
         }
+        //////////////////////
     }
 }

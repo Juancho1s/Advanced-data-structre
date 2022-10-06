@@ -9,7 +9,5 @@ namespace trees_123_
     internal class Methods
     {
         
-        
-
     }
 }
