@@ -6,10 +6,10 @@ namespace trees_123_
     internal class Node
     {
 
-        public int data { get; set; }
-        public int rootData { get; set; }
-        public Node? leftNode { get; set; }
-        public Node? rightNode { get; set; }
+        internal int data { get; set; }
+        internal int rootData { get; set; }
+        internal Node? leftNode { get; set; }
+        internal Node? rightNode { get; set; }
 
         /*Constructor*/
         public Node(int data)
@@ -19,79 +19,7 @@ namespace trees_123_
         //////////////////////
 
         /*Methods*/
-        public void insertNewNode(Node tree, Node newNode, int refToLR, int refToFather)
-        {
-            if (tree.data == refToFather)
-            {
-                if (tree.leftNode == null & refToLR == 0)
-                {
-                    tree.leftNode = newNode;
-                    
-                    return;
-                }
-                else if (tree.rightNode == null & refToLR == 1)
-                {
-                    tree.rightNode = newNode;
-                    
-                    return;
-                }                
-                Console.WriteLine("The father already has a child in the position spesified.");                
-            }
-            else
-            {
-                
-                if (tree.leftNode != null)
-                {
-                    insertNewNode(tree.leftNode, newNode, refToFather);
-                }
-                if (tree.rightNode != null)
-                {
-                    insertNewNode(tree.rightNode, newNode, refToFather);
-                }
-            }
-        }
 
-        public void insertNewNode(Node tree, Node newNode, int refToFather)
-        {
-            if (tree.data == refToFather)
-            {
-                if (tree.leftNode == null)
-                {
-                    tree.leftNode = newNode;
-                    
-                    return;
-                }
-                else if (tree.rightNode == null)
-                {
-                    tree.rightNode = newNode;
-                    
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("The father has all its children.");
-                    return;
-                }
-            }
-            else
-            {
-                
-                if (tree.leftNode != null )
-                {
-                    insertNewNode(tree.leftNode, newNode, refToFather);
-                }
-                if (tree.rightNode != null)
-                {
-                    insertNewNode(tree.rightNode, newNode, refToFather);
-                }
-            }
-            
-        }
-
-        public void insertNewNode(Node tree, Node newNode)
-        {
-
-        }
         ////////////////////// 
 
         /*Getters and setters*/
