@@ -85,6 +85,12 @@ namespace trees_123_
             {
                 return;
             }
+            if (newNode.data == tree.data)
+            {
+                this.x = false;
+                Console.WriteLine("The node that you wanted to add is already in the tree (they cannot be repeated)");
+                return;
+            }
             if (tree.data == refToFather)
             {
                 if (tree.leftNode == null & refLefthRight == 0)
@@ -136,6 +142,12 @@ namespace trees_123_
             {
                 return;
             }
+            if (newNode.data == tree.data)
+            {
+                this.x = false;
+                Console.WriteLine("The node that you wanted to add is already in the tree (they cannot be repeated)");
+                return;
+            }
             if (tree.data == refToFather)
             {
                 if (tree.leftNode == null)
@@ -178,18 +190,54 @@ namespace trees_123_
 
         public void insertNewNode(Node tree, Node newNode)
         {
+            looking(tree, newNode);
+            if (this.x == true)
+            {
+                adding(tree, newNode);
+            }            
+            this.x = true;
+        }
+        private void adding(Node tree, Node newNode)
+        {
             if (tree.leftNode == null)
             {
                 newNode.rootData = tree.data;
                 newNode.rootNode = tree;
                 newNode.leftRight = 0;
-                tree.leftNode = newNode;               
+                tree.leftNode = newNode;
+                this.x = false;
                 return;
             }
             else
             {
-                insertNewNode(tree.leftNode, newNode);
+                adding(tree.leftNode, newNode);
             }
+        }
+        private void looking(Node tree, Node newNode)
+        {
+            if (this.x == false)
+            {
+                return;
+            }
+            if (newNode.data == tree.data)
+            {
+                this.x = false;
+                Console.WriteLine("The node that you wanted to add is already in the tree (they cannot be repeated)");
+                return;
+            }
+            if (tree.leftNode != null | tree.rightNode != null)
+            {
+
+                if (tree.leftNode != null)
+                {
+                    looking(tree.leftNode, newNode);
+                }
+                if (tree.rightNode != null)
+                {
+                    looking(tree.rightNode, newNode);
+                }
+            }
+
         }
         ///////
         

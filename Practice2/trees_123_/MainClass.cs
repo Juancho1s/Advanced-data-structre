@@ -66,10 +66,13 @@ internal class MainClass
 
         Console.WriteLine("/*/*/*/*/*/*/*");
 
-        //firstTree.delete(firstNode, 8);
+        firstTree.delete(firstNode, 8);
 
-        //Console.WriteLine("/*/*/*/*/*/*/*");
+        Console.WriteLine("/*/*/*/*/*/*/*");
 
+        Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
+
+        Console.WriteLine("/*/*/*/*/*/*/*");
 
     }
 }
