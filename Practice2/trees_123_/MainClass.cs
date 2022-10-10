@@ -17,8 +17,12 @@ internal class MainClass
         Node ninthNode = new Node(9);
         Node thenthNode = new Node(10);
         Node eleventhNode = new Node(11);
-        Node twelfth = new Node(12);
+        Node twelfthNode = new Node(12);
         Node thirteenthNode = new Node(13);
+        Node fourteenthNode = new Node(14);
+        Node fifteenthNode = new Node(15);
+
+        List<int> listReturned = new List<int>();
 
         Methods firstTree = new Methods();
 
@@ -28,12 +32,14 @@ internal class MainClass
         firstTree.insertNewNode(firstNode, fifthNode, 1, 2);
         firstTree.insertNewNode(firstNode, sixthhNode, 0, 3);
         firstTree.insertNewNode(firstNode, seventhNode, 1, 3);
-        firstTree.insertNewNode(firstNode, eightNode, 1, 5);
+        firstTree.insertNewNode(firstNode, eightNode, 0, 5);
         firstTree.insertNewNode(firstNode, ninthNode, 0, 8);
         firstTree.insertNewNode(firstNode, thenthNode, 1, 8);
         firstTree.insertNewNode(firstNode, eleventhNode, 0, 9);
-        firstTree.insertNewNode(firstNode, twelfth, 0, 7);
+        firstTree.insertNewNode(firstNode, twelfthNode, 7);
         firstTree.insertNewNode(firstNode, thirteenthNode, 1, 7);
+        firstTree.insertNewNode(firstNode, fourteenthNode, 0, 6);
+        firstTree.insertNewNode(firstNode, fifteenthNode, 1, 14);
 
 
         Console.WriteLine("Method in_order: " + firstTree.traverseIn_Order(firstNode));
@@ -49,5 +55,21 @@ internal class MainClass
         Console.WriteLine("/*/*/*/*/*/*/*");
 
         Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
+
+        Console.WriteLine("/*/*/*/*/*/*/*");
+
+        listReturned =  firstTree.searchNode(firstNode, 13);
+        
+        Console.WriteLine("/*/*/*/*/*/*/*");
+
+        Console.WriteLine(firstTree.getTreeStructure(firstNode));
+
+        Console.WriteLine("/*/*/*/*/*/*/*");
+
+        //firstTree.delete(firstNode, 8);
+
+        //Console.WriteLine("/*/*/*/*/*/*/*");
+
+
     }
 }

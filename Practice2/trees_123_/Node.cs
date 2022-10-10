@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
-
 namespace trees_123_
 {
     internal class Node
     {
-
+        /*Properties*/
         internal int data { get; set; }
         internal int rootData { get; set; }
+        internal int leftRight { get; set; }
+        internal Node? rootNode { get; set; }
         internal Node? leftNode { get; set; }
         internal Node? rightNode { get; set; }
+        //////////////////////
+
 
         /*Constructor*/
         public Node(int data)
@@ -17,10 +19,11 @@ namespace trees_123_
             this.data = data;
         }
         //////////////////////
+       
 
         /*Methods*/
-
         ////////////////////// 
+        
 
         /*Getters and setters*/
         public void setLeftNode(Node newNode)
