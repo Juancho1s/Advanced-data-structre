@@ -40,6 +40,9 @@ internal class MainClass
         firstTree.insertNewNode(firstNode, thirteenthNode, 1, 7);
         firstTree.insertNewNode(firstNode, fourteenthNode, 0, 6);
         firstTree.insertNewNode(firstNode, fifteenthNode, 1, 14);
+        firstTree.insertNewNode(firstNode, fourthNode, 0, 2);
+
+
 
 
         Console.WriteLine("Method in_order: " + firstTree.traverseIn_Order(firstNode));
@@ -64,9 +67,9 @@ internal class MainClass
 
         Console.WriteLine(firstTree.getTreeStructure(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        Console.WriteLine("/*/*/*/*/*/*/*" + "\n");
 
-        firstTree.delete(firstNode, 8);
+        firstTree.delete(firstNode, 2);
 
         Console.WriteLine("/*/*/*/*/*/*/*");
 
@@ -74,5 +77,10 @@ internal class MainClass
 
         Console.WriteLine("/*/*/*/*/*/*/*");
 
+        Console.WriteLine(firstTree.getTreeStructure(firstNode));
+
+        Console.WriteLine("/*/*/*/*/*/*/*");
+
+        
     }
 }

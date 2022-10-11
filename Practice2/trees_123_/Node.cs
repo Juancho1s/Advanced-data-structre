@@ -26,37 +26,6 @@ namespace trees_123_
         
 
         /*Getters and setters*/
-        public void setLeftNode(Node newNode)
-        {
-            this.leftNode = newNode;
-        }
-        public Node? getLeftNode()
-        {
-            return this.leftNode;
-        }
-
-        public void setRightNode(Node newNode)
-        {
-            this.rightNode = newNode;
-        }
-        public Node? getRightNode()
-        {
-            return this.rightNode;
-        }
-
-        public void setRootNode(int rootNode)
-        {
-            this.rootData = rootNode;
-        }
-        public int getRootNode()
-        {
-            return this.rootData;
-        }
-
-        public int getData()
-        {
-            return this.data;
-        }
         //////////////////////
     }
 }
