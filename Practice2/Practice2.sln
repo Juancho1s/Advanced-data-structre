@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Practice2", "Practice2\Practice2.csproj", "{0BE32D6A-E8BC-4DB8-BCEC-B5F90B87E93D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trees_123_", "trees_123_\trees_123_.csproj", "{5C057D91-4DDA-47B7-9A9C-AEA4C3CE2EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "trees_123_", "trees_123_\trees_123_.csproj", "{5C057D91-4DDA-47B7-9A9C-AEA4C3CE2EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csproj", "{8E4E4D62-888B-4353-9E92-BC72E433157E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5C057D91-4DDA-47B7-9A9C-AEA4C3CE2EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C057D91-4DDA-47B7-9A9C-AEA4C3CE2EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C057D91-4DDA-47B7-9A9C-AEA4C3CE2EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E4E4D62-888B-4353-9E92-BC72E433157E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E4E4D62-888B-4353-9E92-BC72E433157E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E4E4D62-888B-4353-9E92-BC72E433157E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E4E4D62-888B-4353-9E92-BC72E433157E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
