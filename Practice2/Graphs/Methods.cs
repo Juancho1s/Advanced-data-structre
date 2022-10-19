@@ -8,5 +8,6 @@ namespace Graphs
 {
     internal class Methods
     {
+
     }
 }
