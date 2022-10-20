@@ -12,7 +12,8 @@ namespace Graphs
         ////////// Atributes
 
         public List<Node> nodesList = new List<Node>();
-        public List<Node> lists = new List<Node>();
+        public List<List<Node>> lists = new List<List<Node>>();
+        public List<int[]> edges = new List<int[]>();
 
         //////////      
 
@@ -25,8 +26,34 @@ namespace Graphs
 
         ////////// Add node to the graph and create lists
 
-        public void addToTheGraph(int newNode, int nodeConection)
-        {            
+        public void addToTheGraphDirection(int newNode, int nodeConection, int weight)
+        {
+            foreach (Node node in nodesList)
+            {
+                if (node.data == nodeConection)
+                {
+                    for (int i = 0; i < nodesList.Count; i++)
+                    {
+                        if (nodesList[i].data == newNode)
+                        {
+                            for (int j = 0; j < nodesList[i].nodesConectios.Count; j++)
+                            {
+                                if (nodesList[i].nodesConectios[j].data)
+                                {
+
+                                }
+                            }
+                            node.nodesConectios.Add();
+                            edges.Add(new int[] { nodeConection, newNode, weight });
+                            return;
+                        }
+                    }                    
+                }
+            }
+        }
+
+        public void addToTheGraphNoDirection(int newNode, int nodeConection, int weight)
+        {
             foreach (Node node in nodesList)
             {
                 if (node.data == nodeConection)
@@ -37,7 +64,7 @@ namespace Graphs
                         {
                             node.nodesConectios.Add(search);
                             search.nodesConectios.Add(node);
-
+                            edges.Add(new int[] { nodeConection, newNode, weight });
                             return;
                         }
                     }
@@ -46,10 +73,10 @@ namespace Graphs
         }
 
         //////////
-        
+
 
         ////////// Create Node
-        
+
         public void createNode(int data)
         {
             foreach (Node Node in nodesList)
