@@ -11,9 +11,7 @@ namespace Graphs
 
         ////////// Atributes
 
-        public List<Node> nodesList = new List<Node>();
-        public List<List<Node>> lists = new List<List<Node>>();
-        public List<int[]> edges = new List<int[]>();
+        private Graph g = new Graph();
 
         //////////      
 
@@ -28,23 +26,24 @@ namespace Graphs
 
         public void addToTheGraphDirection(int newNode, int nodeConection, int weight)
         {
-            foreach (Node node in nodesList)
+            foreach (Node node in g.nodesList)
             {
                 if (node.data == nodeConection)
                 {
-                    for (int i = 0; i < nodesList.Count; i++)
+                    foreach(Node search in g.nodesList)
                     {
-                        if (nodesList[i].data == newNode)
+                        if (search.data == newNode)
                         {
-                            for (int j = 0; j < nodesList[i].nodesConectios.Count; j++)
+                            for (int j = 0; j < search.nodesConectios.Count; j++)
                             {
-                                if (nodesList[i].nodesConectios[j].data)
+                                if (search.nodesConectios[j].data == nodeConection)
                                 {
-
+                                    Console.WriteLine("This conection cannot be made in this vertex.");
+                                    return;
                                 }
                             }
-                            node.nodesConectios.Add();
-                            edges.Add(new int[] { nodeConection, newNode, weight });
+                            node.nodesConectios.Add(search);
+                            g.edges.Add(new int[] { nodeConection, newNode, weight });
                             return;
                         }
                     }                    
@@ -54,17 +53,54 @@ namespace Graphs
 
         public void addToTheGraphNoDirection(int newNode, int nodeConection, int weight)
         {
-            foreach (Node node in nodesList)
+            foreach (Node node in g.nodesList)
             {
                 if (node.data == nodeConection)
                 {
-                    foreach (Node search in nodesList)
+                    foreach (Node search in g.nodesList)
                     {
                         if (search.data == newNode)
                         {
+                            for (int j = 0; j < search.nodesConectios.Count; j++)
+                            {
+                                if (search.nodesConectios[j].data == nodeConection)
+                                {
+                                    Console.WriteLine("This conection cannot be made in this vertex.");
+                                    return;
+                                }
+                            }
                             node.nodesConectios.Add(search);
                             search.nodesConectios.Add(node);
-                            edges.Add(new int[] { nodeConection, newNode, weight });
+                            g.edges.Add(new int[] { nodeConection, newNode, weight });
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        //////////
+
+
+        ////////// Delete conection
+
+        public void DeleteConection(int dNode, int fNode)
+        {
+            foreach (Node node in g.nodesList)
+            {
+                if (node.data == fNode)
+                {
+                    for(int i = 0; i < node.nodesConectios.Count; i++)
+                    {
+                        if (node.nodesConectios[i].data == dNode)
+                        {
+                            node.nodesConectios.RemoveAt(i);
+                            for (int j = 0; j < g.edges.Count; j++)
+                            {
+                                if (g.edges[j][1] == fNode & g.edges[j][2] == dNode)
+                                {
+                                    g.edges.RemoveAt(j);
+                                }
+                            }
                             return;
                         }
                     }
@@ -79,7 +115,7 @@ namespace Graphs
 
         public void createNode(int data)
         {
-            foreach (Node Node in nodesList)
+            foreach (Node Node in g.nodesList)
             {
                 if (data == Node.data)
                 {
@@ -87,7 +123,7 @@ namespace Graphs
                     return;
                 }
             }
-            nodesList.Add(new Node(data));
+            g.nodesList.Add(new Node(data));
         }
 
         //////////

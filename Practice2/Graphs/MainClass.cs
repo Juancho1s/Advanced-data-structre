@@ -19,19 +19,22 @@ internal class MainClass
         methods.createNode(11);
         methods.createNode(12);
 
-        methods.addToTheGraph(1, 3);
-        methods.addToTheGraph(1, 4);
-        methods.addToTheGraph(4, 3);
-        methods.addToTheGraph(3, 5);
-        methods.addToTheGraph(3, 6);
-        methods.addToTheGraph(3, 2);
-        methods.addToTheGraph(2, 6);
-        methods.addToTheGraph(5, 10);
-        methods.addToTheGraph(10, 9);
-        methods.addToTheGraph(9, 6);
-        methods.addToTheGraph(6, 7);
-        methods.addToTheGraph(7, 8);
+        methods.addToTheGraphNoDirection(1, 3, 2);
+        methods.addToTheGraphNoDirection(1, 4, 2);
+        methods.addToTheGraphNoDirection(4, 3, 2);
+        methods.addToTheGraphNoDirection(3, 5, 2);
+        methods.addToTheGraphNoDirection(3, 6, 2);
+        methods.addToTheGraphNoDirection(3, 2, 2);
+        methods.addToTheGraphNoDirection(2, 6, 2);
+        methods.addToTheGraphNoDirection(5, 10, 2);
+        methods.addToTheGraphNoDirection(10, 9, 2);
+        methods.addToTheGraphNoDirection(9, 6, 2);
+        methods.addToTheGraphNoDirection(6, 7, 2);
+        methods.addToTheGraphNoDirection(7, 8, 2);
+        
+        methods.DeleteConection(8, 7);
 
+        methods.addToTheGraphNoDirection(7, 8, 2);
 
     }
 }
