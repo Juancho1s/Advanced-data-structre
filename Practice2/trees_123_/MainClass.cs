@@ -21,6 +21,7 @@ internal class MainClass
         Node thirteenthNode = new Node(13);
         Node fourteenthNode = new Node(14);
         Node fifteenthNode = new Node(15);
+        Node twentyOne = new Node(21);
 
         List<int> listReturned = new List<int>();
 
@@ -41,46 +42,48 @@ internal class MainClass
         firstTree.insertNewNode(firstNode, fourteenthNode, 0, 6);
         firstTree.insertNewNode(firstNode, fifteenthNode, 1, 14);
         firstTree.insertNewNode(firstNode, fourthNode, 0, 2);
+        firstTree.insertNewNode(firstNode, twentyOne, 1, 11);
 
 
 
 
-        Console.WriteLine("Method in_order: " + firstTree.traverseIn_Order(firstNode));
+        //Console.WriteLine("Method in_order: " + firstTree.traverseIn_Order(firstNode));
         
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
         
-        Console.WriteLine("Method post_order: " + firstTree.traversePost_Order(firstNode));
+        //Console.WriteLine("Method post_order: " + firstTree.traversePost_Order(firstNode));
         
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
-        Console.WriteLine("Method pre_order: " + firstTree.traversePre_Order(firstNode));
+        //Console.WriteLine("Method pre_order: " + firstTree.traversePre_Order(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
-        Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
+        //Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
-        listReturned =  firstTree.searchNode(firstNode, 13);
+        //listReturned =  firstTree.searchNode(firstNode, 13);
         
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
         Console.WriteLine(firstTree.getTreeStructure(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*" + "\n");
+        //Console.WriteLine("/*/*/*/*/*/*/*" + "\n");
 
-        firstTree.delete(firstNode, 2);
+        firstTree.delete(firstNode, 5);
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
-        Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
+        //Console.WriteLine("The level of the tree is: " + firstTree.levelCounter(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
+        //Console.WriteLine("/*/*/*/*/*/*/*");
+
+        //Console.WriteLine(firstTree.getTreeStructure(firstNode));
+
+        //Console.WriteLine("/*/*/*/*/*/*/*");
 
         Console.WriteLine(firstTree.getTreeStructure(firstNode));
 
-        Console.WriteLine("/*/*/*/*/*/*/*");
-
-        
     }
 }
