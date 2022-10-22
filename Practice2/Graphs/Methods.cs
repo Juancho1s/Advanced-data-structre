@@ -11,8 +11,9 @@ namespace Graphs
 
         ////////// Atributes        
 
-        private Graph g = new Graph();
-        private listsOfLists lofl = new listsOfLists();
+        public List<Node> nodesList = new List<Node>();
+        public List<List<Node>> lists = new List<List<Node>>();
+        public List<int[]> edges = new List<int[]>();
 
         //////////      
 
@@ -81,8 +82,8 @@ namespace Graphs
                     Console.WriteLine("The node is already in the Nodes list (they cannot be repeated).");
                     return;
                 }
-            }            
-            g.nodesList.Add(new Node(data));
+            }
+            nodesList.Add(new Node(data));
         }
 
         //////////

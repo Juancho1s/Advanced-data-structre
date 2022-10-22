@@ -32,6 +32,7 @@ internal class MainClass
         methods.addToTheGraphDirection(6, 7, 11);
         methods.addToTheGraphDirection(7, 8, 12);
 
+        methods.addToTheGraphNoDirection(7, 8, 2);
 
     }
 }
