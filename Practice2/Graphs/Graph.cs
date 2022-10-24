@@ -11,7 +11,6 @@ namespace Graphs
         //////////
 
         internal List<Node> nodesList = new List<Node>();
-        internal List<List<Node>> lists = new List<List<Node>>();
         internal List<int[]> edges = new List<int[]>();
 
         public List<Node> getNodesList()

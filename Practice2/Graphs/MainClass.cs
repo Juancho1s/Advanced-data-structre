@@ -19,20 +19,19 @@ internal class MainClass
         methods.createNode(11);
         methods.createNode(12);
 
-        methods.addToTheGraphDirection(1, 3, 1);
-        methods.addToTheGraphDirection(1, 4, 2);
-        methods.addToTheGraphDirection(4, 3, 3);
-        methods.addToTheGraphDirection(3, 5, 4);
-        methods.addToTheGraphDirection(3, 6, 5);
-        methods.addToTheGraphDirection(3, 2, 6);
-        methods.addToTheGraphDirection(2, 6, 7);
-        methods.addToTheGraphDirection(5, 10, 8);
-        methods.addToTheGraphDirection(10, 9, 9);
-        methods.addToTheGraphDirection(9, 6, 10);
-        methods.addToTheGraphDirection(6, 7, 11);
-        methods.addToTheGraphDirection(7, 8, 12);
+        methods.addEdge(1, 3, 1);
+        methods.addEdge(1, 4, 2);
+        methods.addEdge(4, 3, 3);
+        methods.addEdge(3, 5, 4);
+        methods.addEdge(3, 6, 5);
+        methods.addEdge(3, 2, 6);
+        methods.addEdge(2, 6, 7);
+        methods.addEdge(5, 10, 8);
+        methods.addEdge(10, 9, 9);
+        methods.addEdge(9, 6, 10);
+        methods.addEdge(6, 7, 11);
+        methods.addEdge(7, 8, 12);
 
-        methods.addToTheGraphNoDirection(7, 8, 2);
 
     }
 }

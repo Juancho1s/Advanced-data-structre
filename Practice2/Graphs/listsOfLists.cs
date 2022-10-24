@@ -10,6 +10,6 @@ namespace Graphs
     {
         internal int nodeData;
 
-        internal List<Node> nodesConectios = new List<Node>();
+        internal List<int[]> nodesConectios = new List<int[]>();
     }
 }

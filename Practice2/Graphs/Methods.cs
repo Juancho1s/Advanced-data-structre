@@ -11,9 +11,7 @@ namespace Graphs
 
         ////////// Atributes        
 
-        public List<Node> nodesList = new List<Node>();
-        public List<List<Node>> lists = new List<List<Node>>();
-        public List<int[]> edges = new List<int[]>();
+        internal Graph g = new Graph();
 
         //////////      
 
@@ -27,15 +25,15 @@ namespace Graphs
 
 
 
-        ////////// Add node to the graph and create lists
+        ////////// Add edge to the graph
 
-        public void addToTheGraphDirection(int newNode, int nodeConection, int weight)
+        public void addEdge(int newNode, int nodeConection, int weight)
         {
             foreach (Node node_1 in g.nodesList)
             {
                 if (nodeConection == node_1.data)
                 {
-                    if (validation(node_1, newNode) == true)
+                    if (validationBool(node_1, newNode) == true)
                     {
                         Console.WriteLine("The new node is already in the conections of the Node");
                         return;
@@ -46,6 +44,7 @@ namespace Graphs
                         {
                             node_1.nodesConectios.Add(node_2);
                             g.edges.Add(new int[] { node_1.data, node_2.data, weight });
+                            return;
                         }
                     }
                     Console.WriteLine("The new Node was never found in the nodes list.");
@@ -54,7 +53,7 @@ namespace Graphs
             }
         }
 
-        private bool validation(Node node, int vCheck)
+        private bool validationBool(Node node, int vCheck)
         {
             bool x = false;
             foreach (Node nCheck in node.nodesConectios)
@@ -83,9 +82,37 @@ namespace Graphs
                     return;
                 }
             }
-            nodesList.Add(new Node(data));
+            g.nodesList.Add(new Node(data));
         }
 
+        //////////
+
+
+
+        ////////// Delete Node
+
+        public void deleteNode(int dNodeD)
+        {
+            foreach (Node dNode in g.nodesList)
+            {
+                if (dNode.data == dNodeD)
+                {
+                    foreach (Node node in g.nodesList)
+                    {
+                        node.nodesConectios.Remove(dNode);
+                    }
+                    g.nodesList.Remove(dNode);
+                    foreach (int[] i in g.edges)
+                    {
+                        if (i[1] == dNodeD | i[2] == dNodeD)
+                        {
+                            g.edges.Remove(i);
+                        }
+                    }
+                }
+            }
+        }
+        
         //////////
     }
 }
