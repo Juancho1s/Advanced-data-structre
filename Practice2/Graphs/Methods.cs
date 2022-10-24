@@ -9,8 +9,9 @@ namespace Graphs
     internal class Methods
     {
 
-        ////////// Atributes        
+        ////////// Atributes
 
+        bool x = false;
         internal Graph g = new Graph();
 
         //////////      
@@ -104,11 +105,28 @@ namespace Graphs
                     g.nodesList.Remove(dNode);
                     foreach (int[] i in g.edges)
                     {
-                        if (i[1] == dNodeD | i[2] == dNodeD)
+                        if (i[0] == dNodeD | i[1] == dNodeD)
                         {
                             g.edges.Remove(i);
                         }
                     }
+                }
+            }
+        }
+        
+        //////////
+        
+
+
+        ////////// Delete edge
+        
+        public void deleteEdge(int node, int direction)
+        {
+            foreach (int[] i in g.edges)
+            {
+                if (i[0] == node | i[1] == direction)
+                {
+                    g.edges.Remove(i);
                 }
             }
         }

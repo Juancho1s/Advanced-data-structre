@@ -8,8 +8,6 @@ namespace Graphs
 {
     internal class listsOfLists
     {
-        internal int nodeData;
-
         internal List<int[]> nodesConectios = new List<int[]>();
     }
 }
