@@ -20,7 +20,19 @@ namespace Graphs
 
         //////////// Creation of Matrix
 
+        public int[,] matrixCreation()
+        {
+            int aux = g.nodesList.Count - 1;
+            int[,] matrix = new int[aux, aux];
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
 
+                }
+            }
+            return matrix;
+        }
 
         //////////
 
@@ -97,14 +109,31 @@ namespace Graphs
             if (g.edges.Count == 0)
             {
                 return;
-            }
-            List<int> Indexes = new List<int>();
-            foreach ()
+            }            
+            foreach (Node cheking in g.nodesList)
             {
-
+                if (cheking.data == indicated)
+                {
+                    g.nodesList.Remove(cheking);
+                    break;
+                }
+            }
+            foreach (Node checking_1 in g.nodesList)
+            {
+                if (checking_1.nodesConectios.Count != 0)
+                {
+                    foreach (Node checking_2 in checking_1.nodesConectios)
+                    {
+                        if (checking_2.data == indicated)
+                        {
+                            checking_1.nodesConectios.Remove(checking_2);
+                            break;
+                        }
+                    }
+                }
             }
         }
-        
+
         //////////
         
 
@@ -118,9 +147,24 @@ namespace Graphs
                 if (checking.startNode == startNode & checking.finalNode == finalNode)
                 {
                     g.edges.Remove(checking);
-                    return;
+                    break;
                 }
             }
+            foreach (Node checking_1 in g.nodesList)
+            {
+                if (checking_1.data == startNode)
+                {
+                    foreach (Node checking_2 in checking_1.nodesConectios)
+                    {
+                        if (checking_2.data == finalNode)
+                        {
+                            checking_1.nodesConectios.Remove(checking_2);
+                            return;
+                        }
+                    }
+                }
+            }
+            Console.WriteLine("The edge was never found");
         }
         
         //////////

@@ -32,7 +32,9 @@ internal class MainClass
         methods.addEdge(6, 7, 11);
         methods.addEdge(7, 8, 12);
 
-        //methods.deleteNode(12);
+        methods.deleteNode(12);
         methods.deleteEdge(6, 9);
+
+
     }
 }

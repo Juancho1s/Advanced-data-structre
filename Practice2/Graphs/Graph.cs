@@ -11,7 +11,7 @@ namespace Graphs
         //////////Atributes
 
         internal List<Node> nodesList = new List<Node>();
-        internal List<Edges> edges = new List<Edges>();
+        internal List<Edges> edges = new List<Edges>();        
 
         //////////      
 
