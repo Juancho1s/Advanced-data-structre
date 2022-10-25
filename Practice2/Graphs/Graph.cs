@@ -8,19 +8,27 @@ namespace Graphs
 {
     internal class Graph
     {
-        //////////
+        //////////Atributes
 
         internal List<Node> nodesList = new List<Node>();
-        internal List<int[]> edges = new List<int[]>();
+        internal List<Edges> edges = new List<Edges>();
+
+        //////////      
+
+
+
+        //////////Getters and setters
 
         public List<Node> getNodesList()
         {
             return nodesList;
         }
 
-        public List<int[]> getEdges()
+        public List<Edges> getEdges()
         {
             return edges;
         }
+
+        //////////
     }
 }

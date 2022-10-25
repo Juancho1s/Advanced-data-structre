@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Graphs
 {
@@ -11,14 +12,13 @@ namespace Graphs
 
         ////////// Atributes
 
-        bool x = false;
-        internal Graph g = new Graph();
+        private Graph g = new Graph();
 
         //////////      
 
 
 
-        //////////// Creation of lists
+        //////////// Creation of Matrix
 
 
 
@@ -28,7 +28,7 @@ namespace Graphs
 
         ////////// Add edge to the graph
 
-        public void addEdge(int newNode, int nodeConection, int weight)
+        public void addEdge(int newNode, int nodeConection, float weight)
         {
             foreach (Node node_1 in g.nodesList)
             {
@@ -44,7 +44,7 @@ namespace Graphs
                         if (newNode == node_2.data)
                         {
                             node_1.nodesConectios.Add(node_2);
-                            g.edges.Add(new int[] { node_1.data, node_2.data, weight });
+                            g.edges.Add(new Edges(nodeConection, newNode, weight));
                             return;
                         }
                     }
@@ -92,25 +92,16 @@ namespace Graphs
 
         ////////// Delete Node
 
-        public void deleteNode(int dNodeD)
+        public void deleteNode(int indicated)
         {
-            foreach (Node dNode in g.nodesList)
+            if (g.edges.Count == 0)
             {
-                if (dNode.data == dNodeD)
-                {
-                    foreach (Node node in g.nodesList)
-                    {
-                        node.nodesConectios.Remove(dNode);
-                    }
-                    g.nodesList.Remove(dNode);
-                    foreach (int[] i in g.edges)
-                    {
-                        if (i[0] == dNodeD | i[1] == dNodeD)
-                        {
-                            g.edges.Remove(i);
-                        }
-                    }
-                }
+                return;
+            }
+            List<int> Indexes = new List<int>();
+            foreach ()
+            {
+
             }
         }
         
@@ -119,14 +110,15 @@ namespace Graphs
 
 
         ////////// Delete edge
-        
-        public void deleteEdge(int node, int direction)
+
+        public void deleteEdge(int startNode, int finalNode)
         {
-            foreach (int[] i in g.edges)
+            foreach (Edges checking in g.edges)
             {
-                if (i[0] == node | i[1] == direction)
+                if (checking.startNode == startNode & checking.finalNode == finalNode)
                 {
-                    g.edges.Remove(i);
+                    g.edges.Remove(checking);
+                    return;
                 }
             }
         }
