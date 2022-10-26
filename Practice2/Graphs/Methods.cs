@@ -20,18 +20,50 @@ namespace Graphs
 
         //////////// Creation of Matrix
 
-        public int[,] matrixCreation()
+        public float[,] matrixCreation()
         {
-            int aux = g.nodesList.Count - 1;
-            int[,] matrix = new int[aux, aux];
+            string print = "";
+
+            float[,] matrix = new float[g.nodesList.Count, g.nodesList.Count];
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
-                {
+                {                    
+                    if (j != i)
+                    {
+                        foreach (Node checking in g.nodesList[i].nodesConectios)
+                        {
+                            if (checking.data == g.nodesList[j].data)
+                            {
+                                matrix[i, j] = g.edges[index(g.edges, g.nodesList[i].data, g.nodesList[j].data)].weight;
+                                break;
+                            }
+                        }
+                        print += matrix[i, j] + "  ";
+                    }
+                    else
+                    {
+                        print += matrix[i, j] + "  ";
+                    }
+                    
+                }
+                print += "\n";
+            }
+            Console.WriteLine(print);
+            return matrix;
+        }
 
+        private int index(List<Edges> list, int startNode, int finalNode)
+        {
+            int i = 0;
+            for (i = 0; i < list.Count; i++)
+            {
+                if (list[i].startNode == startNode & list[i].finalNode == finalNode)
+                {
+                    return i;
                 }
             }
-            return matrix;
+            return i;
         }
 
         //////////
@@ -42,6 +74,10 @@ namespace Graphs
 
         public void addEdge(int newNode, int nodeConection, float weight)
         {
+            if (g.nodesList.Count == 0)
+            {
+                return;
+            }
             foreach (Node node_1 in g.nodesList)
             {
                 if (nodeConection == node_1.data)
@@ -56,7 +92,8 @@ namespace Graphs
                         if (newNode == node_2.data)
                         {
                             node_1.nodesConectios.Add(node_2);
-                            g.edges.Add(new Edges(nodeConection, newNode, weight));
+                            g.edges.Add(new Edges(nodeConection, newNode));
+                            g.edges[g.edges.Count - 1].setWeight(weight);
                             return;
                         }
                     }
@@ -142,6 +179,10 @@ namespace Graphs
 
         public void deleteEdge(int startNode, int finalNode)
         {
+            if (g.nodesList.Count == 0)
+            {
+                return;
+            }
             foreach (Edges checking in g.edges)
             {
                 if (checking.startNode == startNode & checking.finalNode == finalNode)

@@ -31,10 +31,14 @@ internal class MainClass
         methods.addEdge(9, 6, 10);
         methods.addEdge(6, 7, 11);
         methods.addEdge(7, 8, 12);
+        methods.addEdge(11, 1, 3);
+        methods.addEdge(12, 1, 5);
+        methods.addEdge(11, 8, 13);
+        methods.addEdge(12, 9, 2);
 
-        methods.deleteNode(12);
-        methods.deleteEdge(6, 9);
+        //methods.deleteNode(12);
+        //methods.deleteEdge(6, 9);
 
-
+        methods.matrixCreation();
     }
 }

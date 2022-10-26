@@ -20,10 +20,20 @@ namespace Graphs
 
         //////////Constructor
         
-        internal Edges(int startNode, int finalNode, float weight)
+        internal Edges(int startNode, int finalNode)
         {
             this.startNode = startNode;
             this.finalNode = finalNode;
+        }
+        
+        //////////
+        
+
+
+        //////////Getters and setters
+        
+        internal void setWeight(float weight)
+        {
             this.weight = weight;
         }
         
