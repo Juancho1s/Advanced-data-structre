@@ -215,7 +215,43 @@ namespace Graphs
             }
             Console.WriteLine("The edge was never found");
         }
-        
+
+        //////////
+
+
+
+        ////////// Trabersal
+
+        public void traversingBFS(int StartNode)
+        {
+            List<int> checking = new List<int>();
+        }
+
+        public void traversingDFS(int startNode)
+        {
+
+        }
+
+        private bool binarySearch(List<int> checking, int key)
+        {            
+            if (checking.Count == 0)
+            {
+                return false;
+            }
+            bool x = false;
+            checking.Sort();
+            int minNum = 0;
+            int maxNum = checking.Count - 1;
+            while (minNum <= maxNum)
+            {
+                if ((maxNum % 2))
+                {
+
+                }
+            }
+            return x;
+        }
+
         //////////
     }
 }
