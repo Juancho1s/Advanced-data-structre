@@ -22,9 +22,14 @@ namespace Graphs
 
         public float[,] matrixCreation()
         {
-            string print = "";
+            string print = "  ";
 
             float[,] matrix = new float[g.nodesList.Count, g.nodesList.Count];
+            for (int i = 0; i < g.nodesList.Count; i++)
+            {
+                print += "  " + (i + 1);
+            }
+            print += "\n\n1   ";
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
@@ -39,7 +44,7 @@ namespace Graphs
                                 break;
                             }
                         }
-                        print += matrix[i, j] + "  ";
+                        print += matrix[i, j] + "  ";                       
                     }
                     else
                     {
@@ -47,7 +52,10 @@ namespace Graphs
                     }
                     
                 }
-                print += "\n";
+                if (i < matrix.GetLength(0) - 1)
+                {
+                    print += "\n" + (i + 2) + "   ";
+                }
             }
             Console.WriteLine(print);
             return matrix;
