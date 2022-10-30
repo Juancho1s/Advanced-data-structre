@@ -33,7 +33,7 @@ namespace Graphs
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
-                {                    
+                {
                     if (j != i)
                     {
                         foreach (Node checking in g.nodesList[i].nodesConectios)
@@ -44,13 +44,13 @@ namespace Graphs
                                 break;
                             }
                         }
-                        print += matrix[i, j] + "  ";                       
+                        print += matrix[i, j] + "  ";
                     }
                     else
                     {
                         print += matrix[i, j] + "  ";
                     }
-                    
+
                 }
                 if (i < matrix.GetLength(0) - 1)
                 {
@@ -107,7 +107,7 @@ namespace Graphs
                     }
                     Console.WriteLine("The new Node was never found in the nodes list.");
                     return;
-                }                
+                }
             }
         }
 
@@ -154,7 +154,7 @@ namespace Graphs
             if (g.edges.Count == 0)
             {
                 return;
-            }            
+            }
             foreach (Node cheking in g.nodesList)
             {
                 if (cheking.data == indicated)
@@ -180,7 +180,7 @@ namespace Graphs
         }
 
         //////////
-        
+
 
 
         ////////// Delete edge
@@ -215,7 +215,27 @@ namespace Graphs
             }
             Console.WriteLine("The edge was never found");
         }
-        
+
+        //////////Traversings
+
+        public void Traversing_DFS(int node)
+        {
+            List
+            int index = 0;
+            for (index = 0; index < g.nodesList.Count; index++)
+            {
+                if (g.nodesList[index].data == node)
+                {
+                    break;
+                }
+            }
+            recursiveTraversingDFS(g.nodesList[index]);
+        }
+
+        private void recursiveTraversingDFS(Node node)
+        {
+
+        }
         //////////
     }
 }
