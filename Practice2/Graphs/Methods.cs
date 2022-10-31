@@ -50,7 +50,6 @@ namespace Graphs
                     {
                         print += matrix[i, j] + "  ";
                     }
-
                 }
                 if (i < matrix.GetLength(0) - 1)
                 {
@@ -216,11 +215,17 @@ namespace Graphs
             Console.WriteLine("The edge was never found");
         }
 
+        //////////
+
+
+
         //////////Traversings
 
-        public void Traversing_DFS(int node)
+        public List<int> traversing_DFS(int node)
         {
-            List
+            string DFS_Traversing = "";
+            List<int> traversing = new List<int>();
+            List<int> checking = new List<int>();
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
             {
@@ -229,49 +234,105 @@ namespace Graphs
                     break;
                 }
             }
-            recursiveTraversingDFS(g.nodesList[index]);
-        }
-
-        private void recursiveTraversingDFS(Node node)
-        {
-
-        }
-        //////////
-
-
-
-        ////////// Trabersal
-
-        public void traversingBFS(int StartNode)
-        {
-            List<int> checking = new List<int>();
-        }
-
-        public void traversingDFS(int startNode)
-        {
-
-        }
-
-        private bool binarySearch(List<int> checking, int key)
-        {            
-            if (checking.Count == 0)
+            recursiveTraversingDFS(g.nodesList[index], traversing, checking);
+            Console.WriteLine("DFS_Traversing");
+            foreach (int i in traversing)
             {
-                return false;
+                DFS_Traversing += i + "  ";
             }
-            bool x = false;
-            checking.Sort();
-            int minNum = 0;
-            int maxNum = checking.Count - 1;
-            while (minNum <= maxNum)
-            {
-                if ((maxNum % 2))
-                {
+            Console.WriteLine(DFS_Traversing);
+            return traversing;
+        }
 
+        private void recursiveTraversingDFS(Node node, List<int> traverse, List<int> checking)
+        {
+            traverse.Add(node.data);
+            checking.Add(node.data);
+            foreach (Node checking_1 in node.nodesConectios)
+            {
+                if (checkingBool(checking_1.data, checking) == false)
+                {
+                    recursiveTraversingDFS(checking_1, traverse, checking);
                 }
             }
-            return x;
+        }
+
+        public List<int> traversing_BFS(int node)
+        {
+            string BFS_Traversing = "";
+            List<int> traversing = new List<int>();
+            List<int> auxTraversing = new List<int>();
+            List<Node> checking = new List<Node>();
+            int index = 0;
+            for (index = 0; index < g.nodesList.Count; index++)
+            {
+                if (g.nodesList[index].data == node)
+                {
+                    checking.Add(g.nodesList[index]);
+                    traversing.Add(g.nodesList[index].data);
+                    auxTraversing.Add(g.nodesList[index].data);
+                    break;
+                }
+            }
+            BFS_Method(g.nodesList[index], traversing, auxTraversing, checking);
+            Console.WriteLine("BFS_Traversing");
+            foreach (int i in traversing)
+            {
+                BFS_Traversing += i + "  ";
+            }
+            Console.WriteLine(BFS_Traversing);
+            return traversing;
+        }        
+
+        private void BFS_Method(Node node, List<int> traverse, List<int> auxTraversing, List<Node> checking)
+        {            
+            foreach (Node checking_1 in node.nodesConectios)
+            {
+                if (checkingBool(checking_1.data, auxTraversing) == false)
+                {
+                    traverse.Add(checking_1.data);
+                    auxTraversing.Add(checking_1.data);
+                    checking.Add(checking_1);
+                }
+            }
+            checking.RemoveAt(0);
+            if (checking.Count == 0)
+            {
+                return;
+            }            
+            BFS_Method(checking[0], traverse, auxTraversing, checking);
         }
 
         //////////
+
+
+
+        //////////Binary search
+
+        private bool checkingBool(int wanted, List<int> checking)
+        {
+            int lIndex = 0;
+            int rIndex = checking.Count - 1;
+            checking.Sort();
+            while (lIndex <= rIndex)
+            {
+                int aux = (lIndex + rIndex) / 2;
+                if (checking[aux] == wanted)
+                {
+                    return true;
+                }
+                else if (checking[aux] < wanted)
+                {
+                    lIndex = aux + 1;
+                }
+                else
+                {
+                    rIndex = aux - 1;
+                }
+            }
+            return false;
+        }
+
+        //////////       
     }
 }
