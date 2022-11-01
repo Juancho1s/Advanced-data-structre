@@ -282,10 +282,10 @@ namespace Graphs
             }
             Console.WriteLine(BFS_Traversing);
             return traversing;
-        }        
+        }
 
         private void BFS_Method(Node node, List<int> traverse, List<int> auxTraversing, List<Node> checking)
-        {            
+        {
             foreach (Node checking_1 in node.nodesConectios)
             {
                 if (checkingBool(checking_1.data, auxTraversing) == false)
@@ -299,10 +299,46 @@ namespace Graphs
             if (checking.Count == 0)
             {
                 return;
-            }            
+            }
             BFS_Method(checking[0], traverse, auxTraversing, checking);
         }
 
+        //////////
+
+
+
+        //////////The shortest road to the end
+
+        public List<int> theShortest(int node)
+        {
+            List<List<int>> nodes = new List<List<int>>();
+            List<int> auxTraversing = new List<int>();
+            int index = 0;
+            for (index = 0; index < g.nodesList.Count; index++)
+            {
+                if (g.nodesList[index].data == node)
+                {
+                    break;
+                }
+            }
+            scout(g.nodesList[index], nodes, auxTraversing);
+
+        }
+
+        private void scout(Node node, List<List<int>> list, List<int> auxTraversing)
+        {
+            bool x = false;
+            foreach (Node checking_1 in node.nodesConectios)
+            {
+                if (checkingBool(checking_1.data, auxTraversing) == false)
+                {
+                    traverse.Add(checking_1.data);
+                    auxTraversing.Add(checking_1.data);
+                    checking.Add(checking_1);
+                }
+            }
+        }
+        
         //////////
 
 
