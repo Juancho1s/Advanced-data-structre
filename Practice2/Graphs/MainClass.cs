@@ -39,9 +39,11 @@ internal class MainClass
         //methods.deleteNode(12);
         //methods.deleteEdge(6, 9);
 
-        methods.matrixCreation();
+        //methods.matrixCreation();
 
         methods.traversing_DFS(6);
         methods.traversing_BFS(6);
+
+        methods.theShortestLeaf(6);
     }
 }

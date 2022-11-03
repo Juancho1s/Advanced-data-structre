@@ -309,10 +309,12 @@ namespace Graphs
 
         //////////The shortest road to the end
 
-        public List<int> theShortest(int node)
+        public List<int> theShortestLeaf(int node)
         {
-            List<List<int>> nodes = new List<List<int>>();
+            string printRoad = "";
+            List<int> road = new List<int>();
             List<int> auxTraversing = new List<int>();
+            List<int> auxRoad = new List<int>();
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
             {
@@ -321,22 +323,52 @@ namespace Graphs
                     break;
                 }
             }
-            scout(g.nodesList[index], nodes, auxTraversing);
-
+            scout(g.nodesList[index], road, auxTraversing, auxRoad);
+            foreach (int i in road)
+            {
+                printRoad += i + "  ";
+            }
+            Console.WriteLine("The shortest road to one leafis: " + printRoad);
+            return road;
         }
 
-        private void scout(Node node, List<List<int>> list, List<int> auxTraversing)
+        private void scout(Node node, List<int> road, List<int> auxTraversing, List<int> auxRoad)
         {
             bool x = false;
+            auxRoad.Add(node.data);
+            auxTraversing.Add(node.data);
+            if (auxRoad.Count > road.Count & road.Count > 0)
+            {
+                auxRoad.RemoveAt(auxRoad.Count - 1);
+                return;
+            }
             foreach (Node checking_1 in node.nodesConectios)
             {
                 if (checkingBool(checking_1.data, auxTraversing) == false)
                 {
-                    traverse.Add(checking_1.data);
-                    auxTraversing.Add(checking_1.data);
-                    checking.Add(checking_1);
+                    x = true;
+                    scout(checking_1, road, auxTraversing, auxRoad);
                 }
             }
+            if (x != true)
+            {
+                if (road.Count != 0)
+                {
+                    road.Clear();
+                    foreach (int i in auxRoad)
+                    {
+                        road.Add(i);
+                    }
+                }
+                else
+                {
+                    foreach (int i in auxRoad)
+                    {
+                        road.Add(i);
+                    }
+                }
+            }
+            auxRoad.RemoveAt(auxRoad.Count - 1);
         }
         
         //////////
