@@ -307,68 +307,76 @@ namespace Graphs
 
 
 
-        //////////The shortest road to the end
+        //////////The shortest road to the specified node
 
-        public List<int> theShortestLeaf(int node)
+        public List<int> theShortestLeaf(int start_Node, int last_Node)
         {
             string printRoad = "";
             List<int> road = new List<int>();
             List<int> auxTraversing = new List<int>();
-            List<int> auxRoad = new List<int>();
+            List<Node> traversing = new List<Node>();
+            float weight = 0;
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
             {
-                if (g.nodesList[index].data == node)
+                if (g.nodesList[index].data == start_Node)
                 {
                     break;
                 }
             }
-            scout(g.nodesList[index], road, auxTraversing, auxRoad);
+            scout(g.nodesList[index], road, traversing, auxTraversing, weight, last_Node);
             foreach (int i in road)
             {
                 printRoad += i + "  ";
             }
-            Console.WriteLine("The shortest road to one leafis: " + printRoad);
+            Console.WriteLine("The shortest road to the node spesified is: " + printRoad);
             return road;
         }
 
-        private void scout(Node node, List<int> road, List<int> auxTraversing, List<int> auxRoad)
+        private void scout(Node node, List<int> road, List<Node> traversing, List<int> auxTraversing, float weight, int last_Node)
         {
-            bool x = false;
-            auxRoad.Add(node.data);
             auxTraversing.Add(node.data);
-            if (auxRoad.Count > road.Count & road.Count > 0)
-            {
-                auxRoad.RemoveAt(auxRoad.Count - 1);
-                return;
-            }
+            traversing.Add(node);
+            road.Add(node.data);            
             foreach (Node checking_1 in node.nodesConectios)
             {
-                if (checkingBool(checking_1.data, auxTraversing) == false)
+                if (checking_1.data == last_Node)
                 {
-                    x = true;
-                    scout(checking_1, road, auxTraversing, auxRoad);
+                    wheight_search(road[road.Count - 2], node.data, weight);
+                    break;
                 }
+
+                scout(checking_1, road, auxTraversing, weight);                
             }
             if (x != true)
             {
                 if (road.Count != 0)
                 {
                     road.Clear();
-                    foreach (int i in auxRoad)
-                    {
-                        road.Add(i);
-                    }
                 }
                 else
                 {
-                    foreach (int i in auxRoad)
-                    {
-                        road.Add(i);
-                    }
+                    
                 }
             }
-            auxRoad.RemoveAt(auxRoad.Count - 1);
+        }
+        
+        //////////
+
+
+
+        //////////Looking for weight
+        
+        private void wheight_search(int node_1, int node_2, float weight)
+        {
+            foreach (Edges i in g.edges)
+            {
+                if (i.startNode == node_1 & i.finalNode == node_2)
+                {
+                    weight += i.weight;
+                    break;
+                }
+            }
         }
         
         //////////
