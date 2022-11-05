@@ -44,6 +44,6 @@ internal class MainClass
         methods.traversing_DFS(6);
         methods.traversing_BFS(6);
 
-        methods.theShortestLeaf(6);
+        methods.theShortestPath(6, 1);
     }
 }

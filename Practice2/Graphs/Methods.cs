@@ -13,6 +13,7 @@ namespace Graphs
         ////////// Atributes
 
         private Graph g = new Graph();
+        float weight = 0;
 
         //////////      
 
@@ -309,56 +310,84 @@ namespace Graphs
 
         //////////The shortest road to the specified node
 
-        public List<int> theShortestLeaf(int start_Node, int last_Node)
+        public List<int> theShortestPath(int start_Node, int last_Node)
         {
+            bool x_1 = false, x_2 = false;
             string printRoad = "";
             List<int> road = new List<int>();
             List<int> auxTraversing = new List<int>();
             List<Node> traversing = new List<Node>();
-            float weight = 0;
+            float weight = 0, auxWeight = 0;
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
             {
                 if (g.nodesList[index].data == start_Node)
                 {
+                    x_1 = true;
                     break;
                 }
             }
-            scout(g.nodesList[index], road, traversing, auxTraversing, weight, last_Node);
+            foreach (Node i in g.nodesList)
+            {
+                if (i.data == last_Node)
+                {
+                    x_2 = true;
+                    break;
+                }
+            }
+            if (x_1 == false | x_2 == false)
+            {
+                Console.WriteLine("One of the specified nodes by arguments was not found in the system.");
+                return road;
+            }
+            scout(g.nodesList[index], road, traversing, auxTraversing, weight, auxWeight, last_Node);
             foreach (int i in road)
             {
                 printRoad += i + "  ";
             }
-            Console.WriteLine("The shortest road to the node spesified is: " + printRoad);
+            Console.WriteLine("The shortest road to the node spesified is: " + printRoad + "and the cost is: " + this.weight);
+            this.weight = 0;
             return road;
         }
 
-        private void scout(Node node, List<int> road, List<Node> traversing, List<int> auxTraversing, float weight, int last_Node)
+        private void scout(Node node, List<int> road, List<Node> traversing, List<int> auxTraversing, float weight, float auxWeight, int last_Node)
         {
-            auxTraversing.Add(node.data);
+            float auxWeight_2 = 0;
             traversing.Add(node);
-            road.Add(node.data);            
-            foreach (Node checking_1 in node.nodesConectios)
+            auxTraversing.Add(node.data);
+            if (road.Count <= traversing.Count & road.Count > 0)
             {
-                if (checking_1.data == last_Node)
-                {
-                    wheight_search(road[road.Count - 2], node.data, weight);
-                    break;
-                }
-
-                scout(checking_1, road, auxTraversing, weight);                
+                traversing.RemoveAt(traversing.Count - 1);
+                auxTraversing.Remove(node.data);
+                return;
             }
-            if (x != true)
+            if (traversing.Count > 1)
             {
-                if (road.Count != 0)
-                {
-                    road.Clear();
-                }
-                else
-                {
-                    
-                }
+                auxWeight_2 = weight_search(traversing[traversing.Count - 2].data, node.data);
+                auxWeight += auxWeight_2;
             }
+            if (node.data == last_Node)
+            {
+                road.Clear();
+                foreach (Node restructuring in traversing)
+                {
+                    road.Add(restructuring.data);
+                }
+                this.weight = auxWeight;
+                traversing.RemoveAt(traversing.Count - 1);
+                auxTraversing.Remove(node.data);
+                return;
+            }
+            foreach (Node checking in node.nodesConectios)
+            {
+                if (checkingBool(checking.data, auxTraversing) == false)
+                {
+                    scout(checking, road, traversing, auxTraversing, weight, auxWeight, last_Node);
+                }
+            }            
+            auxWeight -= auxWeight_2;
+            traversing.RemoveAt(traversing.Count - 1);
+            auxTraversing.Remove(node.data);
         }
         
         //////////
@@ -367,16 +396,18 @@ namespace Graphs
 
         //////////Looking for weight
         
-        private void wheight_search(int node_1, int node_2, float weight)
+        private float weight_search(int startNode, int finalNode)
         {
+            float aux = 0;
             foreach (Edges i in g.edges)
             {
-                if (i.startNode == node_1 & i.finalNode == node_2)
+                if (i.startNode == startNode & i.finalNode == finalNode)
                 {
-                    weight += i.weight;
+                    aux = i.weight;
                     break;
                 }
             }
+            return aux;
         }
         
         //////////
