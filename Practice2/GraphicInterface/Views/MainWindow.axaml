@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Width="800" Height="450"
         x:Class="GraphicInterface.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="GraphicInterface">
@@ -12,38 +13,50 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-	<!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+	<!-- <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
 	
 	<StackPanel>		
-	<!--this is the divition of the first grid that makes the interface-->
+	<!-- this is the divition of the first grid that makes the interface -->
 				
 		<Grid RowDefinitions="Auto, *">
 
-			<!--this is the first bar in the high of the screen-->
+			<!-- this is the first bar in the high of the screen -->
 			<Grid Grid.Row="0" Background="Orange" Height="30" ColumnDefinitions="Auto, Auto, *">
-				<Rectangle Grid.Column="0" Fill="AntiqueWhite" Width="100">
 				
-				</Rectangle>
-			
-				<Rectangle Grid.Column="1" Fill="Aquamarine" Width="100">
-
-				</Rectangle>
+				<!-- back button -->		
+				<Button Grid.Column="0" Width="100" Background="MediumTurquoise">
+					Back
+				</Button>
 				
+				<!-- restart button -->
+				<Button Grid.Column="1" Width="100" Background="MediumTurquoise">
+					Restart
+				</Button>
+				
+				<!-- Title of the proces which you are executing -->
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
 					<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 				</StackPanel>
 			
 			</Grid>
 
-			<!--this is the part of the main screen where you can select the differnts methods to use-->
+			<!-- this is the part of the main screen where you can select the differnts methods to use -->
 			<Grid Grid.Row="1" ColumnDefinitions="Auto, *">
-				<Rectangle Grid.Column="0" Fill="Bisque" Width="200" Height="420">
 				
+				<!-- This section is dedicated to the selection of the differents methods that you can use -->
+				<Rectangle Grid.Column="0" Fill="Bisque" Width="200" Height="420">
+					
 				</Rectangle>
+				
+				<!-- This section is dedicated to the results from the selected data structure -->
 				<Rectangle Grid.Column="1" Fill="Cyan">
-
+					
 				</Rectangle>
+			
 			</Grid>
+		
 		</Grid>
+	
 	</StackPanel>
+
 </Window>
