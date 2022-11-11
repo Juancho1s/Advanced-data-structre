@@ -6,6 +6,6 @@ namespace GraphicInterface.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Hola, Que hace? Estudiando o que?";
+        public string Greeting => "Hola! ¿Que hace? ¿Estudiando? ¿O que?";
     }
 }
