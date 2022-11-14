@@ -3,53 +3,200 @@
         xmlns:vm="using:GraphicInterface.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-		Width="800" Height="450"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="270"
+		Width="500" Height="270"
         x:Class="GraphicInterface.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="GraphicInterface">
+        Title="GraphicInterface"
+		CanResize="False">
 
 	<Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-	<!-- <TextBlock Text="{Binding Greeting[1]}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
 	
-	<StackPanel>		
-	<!-- this is the divition of the first grid that makes the interface -->
-				
+	<StackPanel>
+		
+		<!-- this is the divition of the first grid that makes the interface -->
 		<Grid RowDefinitions="Auto, *">
 
 			<!-- this is the first bar in the high of the screen -->
-			<Grid Grid.Row="0" Background="Orange" Height="30" ColumnDefinitions="Auto, Auto, *">
-				
-				<!-- back button -->		
-				<Button Name="backButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Width="100" Background="MediumTurquoise">
-					Back
-				</Button>
-				
-				<!-- restart button -->
-				<Button Name="ResetButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="100" Background="MediumTurquoise">
-					Reset all
-				</Button>
+			<Grid Grid.Row="0" 
+				  Background="Aquamarine" 
+				  Height="30"  
+				  ColumnDefinitions="Auto, Auto, *">
+
+				<!-- This is the section for the button -->
+				<Grid Grid.Column="0"
+					  Width="80">
+					
+					<!-- back button -->		
+					<Button Name="backButton"
+							BorderBrush="Red"
+							HorizontalAlignment="Center"
+							HorizontalContentAlignment="Center" 
+							VerticalContentAlignment="Center"  
+							Width="80" 
+							Background="MediumTurquoise">
+						Back
+					</Button>
+
+				</Grid>
+
+				<!-- This is the section for the button -->
+				<Grid Grid.Column="1"
+					  Width="80">
+					
+					<!-- restart button -->
+					<Button Name="ResetButton" 
+							HorizontalAlignment="Center"
+							HorizontalContentAlignment="Center" 
+							VerticalContentAlignment="Center" 
+							Width="80" 
+							Background="MediumTurquoise">
+						Reset all
+					</Button>
+
+				</Grid>
 				
 				<!-- Title of the proces which you are executing -->
-				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
-					<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				<StackPanel HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Grid.Column="2">
+					
+					<TextBlock Text="Graph" 
+							   HorizontalAlignment="Center" 
+							   VerticalAlignment="Center"/>
+					
 				</StackPanel>
 			
 			</Grid>
 
-			<!-- this is the part of the main screen where you can select the differnts methods to use -->
-			<Grid Grid.Row="1" ColumnDefinitions="Auto, *">
-				
-				<!-- This section is dedicated to the selection of the differents methods that you can use -->
-				<Rectangle Grid.Column="0" Fill="Bisque" Width="200" Height="420">
+			<!-- This is the part of the main screen where you can select the differnts methods to use -->
+			<Grid Grid.Row="1" 
+				  ColumnDefinitions="Auto, *"
+				  Background="Cyan">
+
+				<!-- This sectio will contains all the buttons that trigger the differents methods -->
+				<Grid Grid.Column="0" 
+					  Width="160"
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+
+					<!-- This is the section for the button -->	
+					<Grid Grid.Row="0">
+						
+						<!-- This button is designated to invoke the method "Insert Vertex" -->
+						<Button Name="insertVertex"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							Insert vertex
+						</Button>
+						
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="1">
+						
+						<!-- This button is designated to invoke the method "Insert Edge" -->
+						<Button Name="insertEdge"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							Insert Edge
+						</Button>
+						
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="2">
+						
+						<!-- This button is designated to invoke the method "Creation of the matrix" -->
+						<Button Name="showMatrix"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							Show Graph's Matrix
+						</Button>
+
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="3">
 					
-				</Rectangle>
+						<!-- This button is designated to invoke the method "Traversing BFS" from the section traversings -->
+						<Button Name="traversingBFS"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							Traversing BFS
+						</Button>
+
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="4">
+						
+						<!-- This button is designated to invoke the method "Traversing DFS" from the section traversings -->
+						<Button Name="traversingDFS"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							Traversing DFS
+						</Button>
+
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="5">
+					
+						<!-- This button is designated to invoke the method "The shortest road to some specified node" -->
+						<Button Name="theShortestRoad"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+							The shortest road
+						</Button>
+
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="6">
+						
+						<!-- This button is designated to invoke the method "Delete node" -->
+						<Button Name="deleteNode"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+								Delete Node
+						</Button>
+
+					</Grid>
+
+					<!-- This is the section for the button -->
+					<Grid Grid.Row="7">
+						
+						<!-- This button is designated to invoke the method "Delete Edge" -->
+						<Button Name="deleteEdge"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center">
+								Delete Edge
+						</Button>
+
+					</Grid>
+					
+				</Grid>				
 				
 				<!-- This section is dedicated to the results from the selected data structure -->
-				<Rectangle Grid.Column="1" Fill="Cyan">
+				<Rectangle Grid.Column="1">
 					
 				</Rectangle>
 			
