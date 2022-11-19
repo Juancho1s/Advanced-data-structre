@@ -12,16 +12,28 @@ namespace Graphs
 
         ////////// Atributes
 
-        private Graph g = new Graph();
-        float weight = 0;
+        private Graph g = new();
+        private float weight = 0;
 
         //////////      
 
-
+        ////////// Show the List of nodes
+        
+        public string showList()
+        {
+            string returnList = "";
+            foreach (Node i in g.nodesList)
+            {
+                returnList += i.data + "  ";
+            }
+            return returnList;
+        }
+        
+        //////////
 
         //////////// Creation of Matrix
 
-        public float[,] matrixCreation()
+        public string matrixCreation()
         {
             string print = "  ";
 
@@ -57,8 +69,7 @@ namespace Graphs
                     print += "\n" + (i + 2) + "   ";
                 }
             }
-            Console.WriteLine(print);
-            return matrix;
+            return print;
         }
 
         private int index(List<Edges> list, int startNode, int finalNode)
@@ -222,7 +233,7 @@ namespace Graphs
 
         //////////Traversings
 
-        public List<int> traversing_DFS(int node)
+        public string traversing_DFS(int node)
         {
             string DFS_Traversing = "";
             List<int> traversing = new List<int>();
@@ -241,8 +252,7 @@ namespace Graphs
             {
                 DFS_Traversing += i + "  ";
             }
-            Console.WriteLine(DFS_Traversing);
-            return traversing;
+            return DFS_Traversing;
         }
 
         private void recursiveTraversingDFS(Node node, List<int> traverse, List<int> checking)
@@ -258,7 +268,7 @@ namespace Graphs
             }
         }
 
-        public List<int> traversing_BFS(int node)
+        public string traversing_BFS(int node)
         {
             string BFS_Traversing = "";
             List<int> traversing = new List<int>();
@@ -281,8 +291,7 @@ namespace Graphs
             {
                 BFS_Traversing += i + "  ";
             }
-            Console.WriteLine(BFS_Traversing);
-            return traversing;
+            return BFS_Traversing;
         }
 
         private void BFS_Method(Node node, List<int> traverse, List<int> auxTraversing, List<Node> checking)
@@ -310,7 +319,7 @@ namespace Graphs
 
         //////////The shortest road to the specified node
 
-        public List<int> theShortestPath(int start_Node, int last_Node)
+        public string theShortestPath(int start_Node, int last_Node)
         {
             bool x_1 = false, x_2 = false;
             string printRoad = "";
@@ -338,16 +347,15 @@ namespace Graphs
             if (x_1 == false | x_2 == false)
             {
                 Console.WriteLine("One of the specified nodes by arguments was not found in the system.");
-                return road;
+                return printRoad;
             }
             scout(g.nodesList[index], road, traversing, auxTraversing, weight, auxWeight, last_Node);
             foreach (int i in road)
             {
                 printRoad += i + "  ";
             }
-            Console.WriteLine("The shortest road to the node spesified is: " + printRoad + "and the cost is: " + this.weight);
             this.weight = 0;
-            return road;
+            return printRoad;
         }
 
         private void scout(Node node, List<int> road, List<Node> traversing, List<int> auxTraversing, float weight, float auxWeight, int last_Node)
