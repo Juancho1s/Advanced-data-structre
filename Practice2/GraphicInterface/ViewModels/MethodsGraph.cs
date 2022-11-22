@@ -1,13 +1,13 @@
-﻿using System;
+﻿using DynamicData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace Graphs
+namespace GraphicInterface.ViewModels
 {
-    internal class Methods
+    internal class MethodsGraph
     {
 
         ////////// Atributes
@@ -18,17 +18,17 @@ namespace Graphs
         //////////      
 
         ////////// Show the List of nodes
-        
-        public string showList()
+
+        public string showNodesList()
         {
             string returnList = "";
-            foreach (Node i in g.nodesList)
+            foreach (NodesGraph i in g.nodesList)
             {
                 returnList += i.data + "  ";
             }
             return returnList;
         }
-        
+
         //////////
 
         //////////// Creation of Matrix
@@ -49,7 +49,7 @@ namespace Graphs
                 {
                     if (j != i)
                     {
-                        foreach (Node checking in g.nodesList[i].nodesConectios)
+                        foreach (NodesGraph checking in g.nodesList[i].nodesConectios)
                         {
                             if (checking.data == g.nodesList[j].data)
                             {
@@ -72,7 +72,7 @@ namespace Graphs
             return print;
         }
 
-        private int index(List<Edges> list, int startNode, int finalNode)
+        private int index(List<EdgesGraph> list, int startNode, int finalNode)
         {
             int i = 0;
             for (i = 0; i < list.Count; i++)
@@ -97,7 +97,7 @@ namespace Graphs
             {
                 return;
             }
-            foreach (Node node_1 in g.nodesList)
+            foreach (NodesGraph node_1 in g.nodesList)
             {
                 if (nodeConection == node_1.data)
                 {
@@ -106,12 +106,12 @@ namespace Graphs
                         Console.WriteLine("The new node is already in the conections of the Node");
                         return;
                     }
-                    foreach (Node node_2 in g.nodesList)
+                    foreach (NodesGraph node_2 in g.nodesList)
                     {
                         if (newNode == node_2.data)
                         {
                             node_1.nodesConectios.Add(node_2);
-                            g.edges.Add(new Edges(nodeConection, newNode));
+                            g.edges.Add(new EdgesGraph(nodeConection, newNode));
                             g.edges[g.edges.Count - 1].setWeight(weight);
                             return;
                         }
@@ -122,10 +122,10 @@ namespace Graphs
             }
         }
 
-        private bool validationBool(Node node, int vCheck)
+        private bool validationBool(NodesGraph node, int vCheck)
         {
             bool x = false;
-            foreach (Node nCheck in node.nodesConectios)
+            foreach (NodesGraph nCheck in node.nodesConectios)
             {
                 if (nCheck.data == vCheck)
                 {
@@ -141,17 +141,18 @@ namespace Graphs
 
         ////////// Create Node
 
-        public void createNode(int data)
+        public string createNode(int data)
         {
-            foreach (Node Node in g.nodesList)
+            foreach (NodesGraph Node in g.nodesList)
             {
                 if (data == Node.data)
                 {
                     Console.WriteLine("The node is already in the Nodes list (they cannot be repeated).");
-                    return;
+                    return "The node is already in the Nodes list (they cannot be repeated).";
                 }
             }
-            g.nodesList.Add(new Node(data));
+            g.nodesList.Add(new NodesGraph(data));
+            return "The node was added to the list";
         }
 
         //////////
@@ -166,7 +167,7 @@ namespace Graphs
             {
                 return;
             }
-            foreach (Node cheking in g.nodesList)
+            foreach (NodesGraph cheking in g.nodesList)
             {
                 if (cheking.data == indicated)
                 {
@@ -174,11 +175,11 @@ namespace Graphs
                     break;
                 }
             }
-            foreach (Node checking_1 in g.nodesList)
+            foreach (NodesGraph checking_1 in g.nodesList)
             {
                 if (checking_1.nodesConectios.Count != 0)
                 {
-                    foreach (Node checking_2 in checking_1.nodesConectios)
+                    foreach (NodesGraph checking_2 in checking_1.nodesConectios)
                     {
                         if (checking_2.data == indicated)
                         {
@@ -202,7 +203,7 @@ namespace Graphs
             {
                 return;
             }
-            foreach (Edges checking in g.edges)
+            foreach (EdgesGraph checking in g.edges)
             {
                 if (checking.startNode == startNode & checking.finalNode == finalNode)
                 {
@@ -210,11 +211,11 @@ namespace Graphs
                     break;
                 }
             }
-            foreach (Node checking_1 in g.nodesList)
+            foreach (NodesGraph checking_1 in g.nodesList)
             {
                 if (checking_1.data == startNode)
                 {
-                    foreach (Node checking_2 in checking_1.nodesConectios)
+                    foreach (NodesGraph checking_2 in checking_1.nodesConectios)
                     {
                         if (checking_2.data == finalNode)
                         {
@@ -255,11 +256,11 @@ namespace Graphs
             return DFS_Traversing;
         }
 
-        private void recursiveTraversingDFS(Node node, List<int> traverse, List<int> checking)
+        private void recursiveTraversingDFS(NodesGraph node, List<int> traverse, List<int> checking)
         {
             traverse.Add(node.data);
             checking.Add(node.data);
-            foreach (Node checking_1 in node.nodesConectios)
+            foreach (NodesGraph checking_1 in node.nodesConectios)
             {
                 if (checkingBool(checking_1.data, checking) == false)
                 {
@@ -273,7 +274,7 @@ namespace Graphs
             string BFS_Traversing = "";
             List<int> traversing = new List<int>();
             List<int> auxTraversing = new List<int>();
-            List<Node> checking = new List<Node>();
+            List<NodesGraph> checking = new List<NodesGraph>();
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
             {
@@ -294,9 +295,9 @@ namespace Graphs
             return BFS_Traversing;
         }
 
-        private void BFS_Method(Node node, List<int> traverse, List<int> auxTraversing, List<Node> checking)
+        private void BFS_Method(NodesGraph node, List<int> traverse, List<int> auxTraversing, List<NodesGraph> checking)
         {
-            foreach (Node checking_1 in node.nodesConectios)
+            foreach (NodesGraph checking_1 in node.nodesConectios)
             {
                 if (checkingBool(checking_1.data, auxTraversing) == false)
                 {
@@ -325,7 +326,7 @@ namespace Graphs
             string printRoad = "";
             List<int> road = new List<int>();
             List<int> auxTraversing = new List<int>();
-            List<Node> traversing = new List<Node>();
+            List<NodesGraph> traversing = new List<NodesGraph>();
             float weight = 0, auxWeight = 0;
             int index = 0;
             for (index = 0; index < g.nodesList.Count; index++)
@@ -336,7 +337,7 @@ namespace Graphs
                     break;
                 }
             }
-            foreach (Node i in g.nodesList)
+            foreach (NodesGraph i in g.nodesList)
             {
                 if (i.data == last_Node)
                 {
@@ -358,7 +359,7 @@ namespace Graphs
             return printRoad;
         }
 
-        private void scout(Node node, List<int> road, List<Node> traversing, List<int> auxTraversing, float weight, float auxWeight, int last_Node)
+        private void scout(NodesGraph node, List<int> road, List<NodesGraph> traversing, List<int> auxTraversing, float weight, float auxWeight, int last_Node)
         {
             float auxWeight_2 = 0;
             traversing.Add(node);
@@ -377,7 +378,7 @@ namespace Graphs
             if (node.data == last_Node)
             {
                 road.Clear();
-                foreach (Node restructuring in traversing)
+                foreach (NodesGraph restructuring in traversing)
                 {
                     road.Add(restructuring.data);
                 }
@@ -386,28 +387,28 @@ namespace Graphs
                 auxTraversing.Remove(node.data);
                 return;
             }
-            foreach (Node checking in node.nodesConectios)
+            foreach (NodesGraph checking in node.nodesConectios)
             {
                 if (checkingBool(checking.data, auxTraversing) == false)
                 {
                     scout(checking, road, traversing, auxTraversing, weight, auxWeight, last_Node);
                 }
-            }            
+            }
             auxWeight -= auxWeight_2;
             traversing.RemoveAt(traversing.Count - 1);
             auxTraversing.Remove(node.data);
         }
-        
+
         //////////
 
 
 
         //////////Looking for weight
-        
+
         private float weight_search(int startNode, int finalNode)
         {
             float aux = 0;
-            foreach (Edges i in g.edges)
+            foreach (EdgesGraph i in g.edges)
             {
                 if (i.startNode == startNode & i.finalNode == finalNode)
                 {
@@ -417,7 +418,7 @@ namespace Graphs
             }
             return aux;
         }
-        
+
         //////////
 
 

@@ -3,12 +3,14 @@
         xmlns:vm="using:GraphicInterface.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="430"
-		Width="500" Height="430"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="390"
+		Width="500" Height="390"
         x:Class="GraphicInterface.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="GraphicInterface"
-		CanResize="False">
+		CanResize="False"
+		ScrollViewer.VerticalScrollBarVisibility="Visible"
+		ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
 	<Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -36,7 +38,7 @@
 							VerticalContentAlignment="Center"  
 							Width="80" 
 							Foreground="Cyan"
-							Background="Orange">
+							Background="Purple">
 						Back
 					</Button>
 
@@ -76,25 +78,26 @@
 			<Grid Grid.Row="1" 
 				  ColumnDefinitions="Auto, Auto"
 				  Background="Cyan"
-				  Height="480">
+				  Height="210">
 
 				<!-- This sectio will contains all the buttons that trigger the differents methods -->
 				<Grid Grid.Column="0" 
 					  Width="160"
-					  RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
-					<!-- This is the section for the button -->	
+					<!-- This is the section for the new node button -->	
 					<Grid Grid.Row="0">
 						
-						<!-- This button is designated to invoke the method "Insert Vertex" -->
-						<Button Name="insertVertex"
+						<!-- This button is designated to invoke the method "Insert Node" -->
+						<Button Name="insertNode"
+								Click="nodeInsertion"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
 								VerticalContentAlignment="Center"
 								Width="160" Height="30"
 								Background="CadetBlue">
-							Insert vertex
+							Insert Node
 						</Button>
 						
 					</Grid>
@@ -114,9 +117,10 @@
 						</Button>
 						
 					</Grid>
-
+					
 					<!-- This is the section for the button -->
-					<Grid Grid.Row="2">
+					<Grid Grid.Row="2"
+						  Height="30">
 					
 						<!-- This button is designated to invoke the method "The shortest road to some specified node" -->
 						<Button Name="theShortestRoad"
@@ -126,13 +130,43 @@
 								VerticalContentAlignment="Center"
 								Width="160" Height="30"
 								Background="CadetBlue">
-							The shortest road
+							The Shortest Road
 						</Button>
 
 					</Grid>
+					
+					<Grid Grid.Row="3">
+						
+						<!-- This button is designated to invoke the method "BFS_Traversing" -->
+						<Button Name="BFS_Traversing"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								Width="160" Height="30"
+								Background="CadetBlue">
+							BFS Traversing
+						</Button>
+						
+					</Grid>
+					
+					<Grid Grid.Row="4">
+						
+						<!-- This button is designated to invoke the method "DFS_Traversing" -->
+						<Button Name="DFS_Traversing"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								Width="160" Height="30"
+								Background="CadetBlue">
+							DFS Traversing
+						</Button>
+						
+					</Grid>
 
 					<!-- This is the section for the button -->
-					<Grid Grid.Row="3">
+					<Grid Grid.Row="5">
 						
 						<!-- This button is designated to invoke the method "Delete node" -->
 						<Button Name="deleteNode"
@@ -149,7 +183,7 @@
 					</Grid>
 
 					<!-- This is the section for the button -->
-					<Grid Grid.Row="4">
+					<Grid Grid.Row="6">
 						
 						<!-- This button is designated to invoke the method "Delete Edge" -->
 						<Button Name="deleteEdge"
@@ -169,9 +203,9 @@
 				
 				<!-- This section is dedicated to the input of the methods from the selected data structur -->
 				<Grid Grid.Column="1"
-					  RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 					
-					<!-- This section is for the input from the insert vertex button -->
+					<!-- This section is for the input from the insert node button -->
 					<Grid Grid.Row="0"
 						  Height="30"
 						  ColumnDefinitions="Auto, Auto">
@@ -179,6 +213,7 @@
 						<!-- This is the section for the input of the data which the user wants to insert -->
 						<Grid Grid.Column="0"
 							  Width="100">
+							
 							<TextBox Watermark="New Node"
 									 HorizontalContentAlignment="Center"
 									 Name="newNodeInput"/>
@@ -187,6 +222,12 @@
 						<!-- This is the section dedicated to the nodes that make up the graph -->
 						<Grid Grid.Column="1"
 							  Width="240">
+								
+							<!-- This section is to show the nodes list -->
+							<Label x:Name="nodesList"
+								   ScrollViewer.HorizontalScrollBarVisibility="Auto">
+								
+							</Label>
 
 						</Grid>
 						
@@ -195,14 +236,17 @@
 					<!-- This section is for the input form the insert edge button -->
 					<Grid Grid.Row="1"
 						  Height="30"
-						  ColumnDefinitions="Auto, Auto, Auto">
+						  ColumnDefinitions="Auto, Auto, Auto, Auto, Auto">
 						
 						<!-- This section is for the input of the new edge (startNode) -->
 						<Grid Grid.Column="0"
-							  Width="150">
+							  Width="110">
+							
+							<!-- This part is to input the Start Node -->
 							<TextBox Watermark="Start Node"
 									 HorizontalContentAlignment="Center"
 									 Name="indexStart"/>
+						
 						</Grid>
 						
 						<!-- This section is just to spesify grafically -->
@@ -211,6 +255,7 @@
 									VerticalAlignment="Center"
 									Width="40">
 							
+							<!-- This part is just to spesify the directioin of the process -->
 							<TextBlock Text="-->" 
 							   HorizontalAlignment="Center" 
 							   VerticalAlignment="Center"/>
@@ -219,10 +264,38 @@
 						
 						<!-- This section is for the input of the new edge (finalNode) -->
 						<Grid Grid.Column="2"
-							  Width="150">
+							  Width="110">
+							
+							<!-- This part is to insert the Final node data -->
 							<TextBox Watermark="Final Node"
 									 HorizontalContentAlignment="Center"
 									 Name="indexFinal"/>
+						
+						</Grid>
+						
+						<!-- This section is just to spesify grafically -->
+						<StackPanel Grid.Column="3"
+									Width="10"
+									VerticalAlignment="Center"
+									HorizontalAlignment="Center">
+							
+							<!-- This part is just to spesify the end of the last part -->	
+							<TextBlock Text=";"
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center"/>
+						
+						</StackPanel>
+						
+						<!-- This sectioin is to input the weight of the conection -->
+						<Grid Grid.Column="4"
+							  Width="70">
+							
+							<!-- This part is to insert the weight of the node (this one is float) -->
+							<TextBox Watermark="Weight"
+									 Name="conectionWheight"
+									 HorizontalContentAlignment="Center">
+								
+							</TextBox>
 						</Grid>
 										
 					</Grid>
@@ -234,37 +307,82 @@
 						
 						<!-- This is the section for the input of the start of the road -->
 						<Grid Grid.Column="0"
-							  Width="70">
+							  Width="80">
+							
+							<!-- This part is to input the Start node of the road -->
 							<TextBox Watermark="Start"
 									 HorizontalContentAlignment="Center"
 									 Name="roadStart"/>
+						
 						</Grid>
 						
 						<!-- This is section is just to spesify grafically -->
 						<Grid Grid.Column="1"
 							  Width="40">
+						
+							<!-- This part is just to spesify the direction of the process -->
 							<TextBlock Text="-->" 
 							   HorizontalAlignment="Center" 
 							   VerticalAlignment="Center"/>
+						
 						</Grid>
 					
 						<!-- This is the section for the input of the final of the road -->
 						<Grid Grid.Column="2"
-							  Width="70">
+							  Width="80">
+							
+							<!-- This part is to input the  -->
 							<TextBox Watermark="Final"
 									 HorizontalContentAlignment="Center"
 									 Name="roadFinal"/>
 						</Grid>
 						
-						<!--  -->
+						<!-- This section is to show the results of the method -->
 						<Grid Grid.Column="3">
 							
 						</Grid>
 					
 					</Grid>
 					
-					<!-- This is the sectio to input the node that the user wants it to be erased -->
+					<!-- This is the section for the input of the required date for the traversing (BFS) -->
 					<Grid Grid.Row="3"
+						  ColumnDefinitions="Auto, Auto"
+						  Height="30">
+						
+						<!-- This section is to designate the area for the Start Node -->
+						<Grid Grid.Column="0"
+							  Width="100">
+							
+							<!-- This part is to input the initial node of the traversing -->
+							<TextBox Watermark="Initial Node"
+									 Name="InitialNodeBFS"
+									 HorizontalContentAlignment="Center">
+							</TextBox>
+						</Grid>
+							
+					</Grid>
+					
+					<!-- This is the section for the input of the required data for the traversing (DFS) -->
+					<Grid Grid.Row="4"
+						  ColumnDefinitions="Auto, Auto"
+						  Height="30">
+						
+						<!-- This section is to designate the area from the Start Node -->
+						<Grid Grid.Column="0"
+							  Width="100">
+							
+							<!-- This part is to input the initial node of the traversing -->
+							<TextBox Watermark="Initial Node"
+								 Name="InitialNodeDFS"
+								 HorizontalContentAlignment="Center">
+							</TextBox>
+						
+						</Grid>
+					
+					</Grid>
+					
+					<!-- This is the sectio to input the node that the user wants it to be erased -->
+					<Grid Grid.Row="5"
 						  ColumnDefinitions="Auto, Auto, Auto"
 						  Height="30">
 						
@@ -273,17 +391,23 @@
 									Width="130"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
+							
+							<!-- This part is just to enphasize the action that the user can do -->
 							<TextBlock Text="!!!!" 
 							   HorizontalAlignment="Right" 
 							   VerticalAlignment="Center"/>
+						
 						</StackPanel>
 						
 						<!-- This section is to input the node data -->
 						<Grid Grid.Column="1"
 							  Width="80">
+							
+							<!-- This part is to input the node which the user wants to erase -->
 							<TextBox Watermark="Node"
 									 HorizontalContentAlignment="Center"
 									 Name="dNode"/>
+						
 						</Grid>
 						
 						<!-- This section is to enphasize the action that the user can do -->
@@ -291,6 +415,8 @@
 									Width="130"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
+							
+							<!-- This part is just to enphasize the action which the user can do -->
 							<TextBlock Text="!!!!" 
 							   HorizontalAlignment="Left" 
 							   VerticalAlignment="Center"/>
@@ -300,7 +426,7 @@
 					</Grid>
 					
 					<!-- This sectionis for the input from the delete edge button -->
-					<Grid Grid.Row="4"
+					<Grid Grid.Row="6"
 						  Height="30"
 						  ColumnDefinitions="Auto, Auto, Auto, Auto, Auto">
 
@@ -309,36 +435,46 @@
 									Width="20"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
+							
+							<!-- This part is just to enphasize the action that the user can do -->
 							<TextBlock Text="!!!!" 
 							   HorizontalAlignment="Right" 
 							   VerticalAlignment="Center"/>
+						
 						</StackPanel>
 						
-						<!-- This section is to input the node data -->
+						<!-- This section is to input the Start node data -->
 						<Grid Grid.Column="1"
 							  Width="130">
+							
+							<!-- This part is to input the Start node from the conection -->
 							<TextBox Watermark="Start Node"
 									 HorizontalContentAlignment="Center"
 									 Name="dEdgeStart"/>
 						</Grid>
 						
-						<!-- This section is to enphasize the action that the user can do -->
+						<!-- This section is just ot spesify grafically -->
 						<StackPanel Grid.Column="2"
 									Width="40"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
+							
+							<!-- This part is just to spesify the direction of the process -->
 							<TextBlock Text="-->" 
-							   HorizontalAlignment="Center" 
-							   VerticalAlignment="Center"/>
+									   HorizontalAlignment="Center" 
+									   VerticalAlignment="Center"/>
 
 						</StackPanel>
 						
-						<!-- This section is to input the node data -->
+						<!-- This section is to input the Final node data -->
 						<Grid Grid.Column="3"
 							  Width="130">
+							
+							<!-- This section is to input the Fianl Node from the conection -->
 							<TextBox Watermark="Final Node"
 									 HorizontalContentAlignment="Center"
 									 Name="dEdgeFinal"/>
+						
 						</Grid>
 													
 						<!-- This section is to enphasize the action that the user can do -->
@@ -346,6 +482,8 @@
 									Width="20"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
+							
+							<!-- This section is enphasizing -->
 							<TextBlock Text="!!!!" 
 							   HorizontalAlignment="Left" 
 							   VerticalAlignment="Center"/>
@@ -357,12 +495,41 @@
 				</Grid>
 			
 			</Grid>
-		
+			
+		<!-- This section will contain the matrix -->
+		<Grid Grid.Row="2"
+			  Height="150"
+			  Background="Cyan"
+			  Margin="0,1,0,0"
+			  ColumnDefinitions="Auto, Auto">
+			
+			<!-- This section is to spesify the data structure tha is shown -->
+			<Grid Grid.Column="0"
+				  Width="160">
+				
+				<!-- This section is the text taht is shown -->
+				<TextBlock VerticalAlignment="Center"
+						   HorizontalAlignment="Center">
+					Adjasency Matrix:
+				</TextBlock>	
+			
+			</Grid>
+			
+			<!-- This part Will whow the matrix -->
+			<Grid Grid.Column="1"
+				  ShowGridLines="True">
+				
+				<!-- This part is to output the matrix for the user -->
+				<TextBlock VerticalAlignment="Center"
+						   HorizontalAlignment="Center"
+						   Name="adjasenciMatrix">
+					
+				</TextBlock>
+					
+			</Grid>
+			
 		</Grid>
 		
-		<!-- This part is dedicated to the results from all the methods -->
-		<Grid>
-
 		</Grid>
 	
 	</StackPanel>
