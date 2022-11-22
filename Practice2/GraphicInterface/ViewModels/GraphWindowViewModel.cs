@@ -11,6 +11,11 @@ namespace GraphicInterface.ViewModels
         public string assigningNodeList(int newNode)
         {
             mG.createNode(newNode);
+            return showNodesL();
+        }
+
+        public string showNodesL()
+        {
             return mG.showNodesList();
         }
 
@@ -32,6 +37,21 @@ namespace GraphicInterface.ViewModels
         public string assigningTheSortestRoad(int startNode, int finalNode)
         {
             return mG.theShortestPath(startNode, finalNode);
+        }
+
+        public void resetAll()
+        {
+            mG.resetAll();
+        }
+
+        public void deleteNode(int dNode)
+        {
+            mG.deleteNode(dNode);
+        }
+
+        public void edgeInsertion(int startNode, int finalNode, float weight)
+        {
+            mG.addEdge(finalNode, startNode, weight);
         }
     }
 }

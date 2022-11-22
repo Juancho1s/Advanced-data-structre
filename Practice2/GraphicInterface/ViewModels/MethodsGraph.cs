@@ -17,6 +17,7 @@ namespace GraphicInterface.ViewModels
 
         //////////      
 
+        
         ////////// Show the List of nodes
 
         public string showNodesList()
@@ -30,13 +31,27 @@ namespace GraphicInterface.ViewModels
         }
 
         //////////
+        
+        
+        ////////// Reset ALL
+        
+        public void resetAll ()
+        {
+            g.nodesList.Clear();
+            g.edges.Clear();
+        }
+        
+        //////////
 
         //////////// Creation of Matrix
 
         public string matrixCreation()
         {
             string print = "  ";
-
+            if (g.nodesList.Count == 0)
+            {
+                return "";
+            }
             float[,] matrix = new float[g.nodesList.Count, g.nodesList.Count];
             for (int i = 0; i < g.nodesList.Count; i++)
             {
@@ -163,7 +178,7 @@ namespace GraphicInterface.ViewModels
 
         public void deleteNode(int indicated)
         {
-            if (g.edges.Count == 0)
+            if (g.nodesList.Count == 0)
             {
                 return;
             }

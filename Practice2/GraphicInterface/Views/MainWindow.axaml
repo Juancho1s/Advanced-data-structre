@@ -38,8 +38,8 @@
 							VerticalContentAlignment="Center"  
 							Width="80" 
 							Foreground="Cyan"
-							Background="Purple">
-						Back
+							Background="Orange">
+						Tree
 					</Button>
 
 				</Grid>
@@ -49,7 +49,8 @@
 					  Width="80">
 					
 					<!-- restart button -->
-					<Button Name="ResetButton" 
+					<Button Name="ResetButton"
+							Click="resetAll"
 							HorizontalAlignment="Center"
 							HorizontalContentAlignment="Center" 
 							VerticalContentAlignment="Center" 
@@ -107,6 +108,7 @@
 						
 						<!-- This button is designated to invoke the method "Insert Edge" -->
 						<Button Name="insertEdge"
+								Click="edgeInsertion"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -170,6 +172,7 @@
 						
 						<!-- This button is designated to invoke the method "Delete node" -->
 						<Button Name="deleteNode"
+								Click="deleteNodeM"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -224,10 +227,12 @@
 							  Width="240">
 								
 							<!-- This section is to show the nodes list -->
-							<Label x:Name="nodesList"
-								   ScrollViewer.HorizontalScrollBarVisibility="Auto">
+							<TextBlock x:Name="nodesList"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
+									   ScrollViewer.HorizontalScrollBarVisibility="Auto">
 								
-							</Label>
+							</TextBlock>
 
 						</Grid>
 						
@@ -501,7 +506,7 @@
 			  Height="150"
 			  Background="Cyan"
 			  Margin="0,1,0,0"
-			  ColumnDefinitions="Auto, Auto">
+			  ColumnDefinitions="*, *">
 			
 			<!-- This section is to spesify the data structure tha is shown -->
 			<Grid Grid.Column="0"
@@ -517,6 +522,8 @@
 			
 			<!-- This part Will whow the matrix -->
 			<Grid Grid.Column="1"
+				  VerticalAlignment="Center"
+				  HorizontalAlignment="Center"
 				  ShowGridLines="True">
 				
 				<!-- This part is to output the matrix for the user -->
