@@ -28,7 +28,7 @@ internal class MainClass
         methods.addEdge(2, 6, 7);
         methods.addEdge(5, 10, 8);
         methods.addEdge(10, 9, 9);
-        methods.addEdge(9, 6, 10);
+        methods.addEdge(9, 6, 108);
         methods.addEdge(6, 7, 11);
         methods.addEdge(7, 8, 12);
         methods.addEdge(11, 1, 3);
@@ -44,6 +44,6 @@ internal class MainClass
         methods.traversing_DFS(6);
         methods.traversing_BFS(6);
 
-        methods.theShortestPath(6, 1);
+        methods.theShortestPath(6, 12);
     }
 }

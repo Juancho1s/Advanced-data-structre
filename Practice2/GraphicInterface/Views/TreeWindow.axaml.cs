@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace GraphicInterface.Views
 {
@@ -7,6 +8,13 @@ namespace GraphicInterface.Views
         public TreeWindow()
         {
             InitializeComponent();
+        }
+
+        public void windowGraph(object sendetr, RoutedEventArgs e)
+        {
+            MainWindow mW = new();
+            mW.Show();
+            this.Close();
         }
     }
 }

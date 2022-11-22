@@ -32,7 +32,8 @@
 					  Width="80">
 					
 					<!-- back button -->		
-					<Button Name="backButton"
+					<Button Click="buttonTree" 
+						Name="treeButton"
 							HorizontalAlignment="Center"
 							HorizontalContentAlignment="Center" 
 							VerticalContentAlignment="Center"  
@@ -67,7 +68,8 @@
 							VerticalAlignment="Center" 
 							Grid.Column="2">
 					
-					<TextBlock Text="Graph" 
+					<TextBlock Text="Graph"
+							   FontSize="20"
 							   HorizontalAlignment="Center" 
 							   VerticalAlignment="Center"/>
 					

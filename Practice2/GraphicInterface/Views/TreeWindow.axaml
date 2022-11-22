@@ -17,41 +17,64 @@
 
 			<!-- This part will contain the main navegation through the windows -->
 			<Grid Grid.Row="0"
-				  ColumnDefinitions="Auto, Auto, *"
+				  ColumnDefinitions="Auto, *"
 				  Height="30"
-				  Background="Blue">
+				  Background="Aquamarine">
 
-				<!-- This section is made to define the buttons and their actions -->
+				<!-- This section is made to define the buttons and their actions from the top of the window -->
 				<Grid Grid.Column="0"
-					  Height="30" Width="80">
+					  ColumnDefinitions="Auto, Auto"
+					  Height="30" Width="160">
+	
+					<!-- This part is to slice the zice of the buttons -->
+					<Grid Grid.Column="0">
+						
+						<!-- This button is to conect this window with the graph window -->
+						<Button Name="GraphButton"
+								Click="windowGraph"
+								HorizontalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								Width="80"
+								Foreground="Cyan"
+								Background="Orange">
+							Graph
+						</Button>
+						
+					</Grid>
 
-					<!-- This button is to conect this window with the graph window -->
-					<Button Name="GraphButton"
-							HorizontalAlignment="Center"
-							HorizontalContentAlignment="Center"
-							VerticalContentAlignment="Center"
-							Width="80"
-							Foreground="Cyan"
-							Background="Orange">
-						Graph
-					</Button>
+					<!-- This section is made to slice the zice of the buttons -->
+					<Grid Grid.Column="1">
+
+						<Button Name="resetAll"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								HorizontalAlignment="Center"
+								Width="80"
+								Foreground="Cyan"
+								Background="Red">
+							Reset All
+						</Button>
+						
+					</Grid>
 					
 				</Grid>
 
-				<!-- This section is made to define the button designated to restart all the window -->
+				<!-- This section is to add the tittle of the window -->
 				<Grid Grid.Column="1"
-					  Width="80" Height="30">
+					  Width="340">
 					
-					<!-- This button is designated to errase all the things in this  window -->
-					<Button Name="restartButton"
-							HorizontalContentAlignment="Center"
-							HorizontalAlignment="Center"
-							VerticalContentAlignment="Center"
-							Width="80"
-							Foreground="Cyan"
-							Background="Red">
-						Reset All	
-					</Button>
+					<!-- This part shows the tittle of the window -->
+					<StackPanel>
+						
+						<!-- This is the tittle of the window -->
+						<TextBlock FontSize="20"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center">
+							Tree
+						</TextBlock>
+						
+					</StackPanel>
 					
 				</Grid>
 				
@@ -59,16 +82,73 @@
 
 			<!-- This secton is designated to input all the buttons from the methods and the results from thoseones -->
 			<Grid Grid.Row="1"
-				  ColumnDefinitions="Auto, *">
+				  ColumnDefinitions="Auto, Auto, Auto">
 
 				<!-- This section is designated to the buttons for the differents methods -->
 				<Grid Grid.Column="0"
-					  RowDefinitions="Auto, Auto, Auto, Auto">
+					  RowDefinitions="Auto, Auto, Auto, *">
 
-					<!-- This button will invoke the method called  -->
-					<Button>
+					<Grid Grid.Row="0"
+						  Height="50">
+
+						<!-- This button will invoke the method called  -->
+						<Button VerticalContentAlignment="Center"
+								HorizontalContentAlignment="Center"
+								HorizontalAlignment="Center"
+								Width="160" Height="50">
+							Insert Node
+						</Button>
+
+					</Grid>
+
+					<!-- This sectio is for the button which is designated to the method search -->
+					<Grid Grid.Row="1"
+						  Height="50">
+
+						<!-- This section is to define the button that will contain the action -->
+						<Button VerticalContentAlignment="Center"
+								HorizontalContentAlignment="Center"
+								HorizontalAlignment="Center"
+								Width="160" Height="50">
+							Search
+						</Button>
+
+					</Grid>
+					
+					<!-- This sectionis designated to the button that triggers the level counter method -->
+					<Grid Grid.Row="2"
+						  Height="50">
 						
-					</Button>
+						<!-- This button triggers the method level's counter -->
+						<Button VerticalContentAlignment="Center"
+								HorizontalContentAlignment="Center"
+								HorizontalAlignment="Center"
+								Width="160" Height="50">
+							Level's Counter
+						</Button>
+						
+					</Grid>
+					
+					<!-- This section is designated for the button Delete Node -->
+					<Grid Grid.Row="3"
+						  Width="160" Height="240">
+						
+						<!-- This button triggers the Delete Node method -->
+						<Button VerticalContentAlignment="Center"
+								HorizontalContentAlignment="Center"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Width="180" Height="50">
+							Delete Node
+						</Button>
+
+					</Grid>
+					
+				</Grid>
+				
+				<!-- This section will contain all the inputs for the differents methods from the buttonse
+					(It's important that you follow the interface as liniary)-->
+				<Grid Grid.Column="1">
 					
 				</Grid>
 				

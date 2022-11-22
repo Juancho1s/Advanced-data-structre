@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using GraphicInterface.ViewModels;
 using Graphs;
 using System;
+using System.Runtime.InteropServices.ObjectiveC;
 
 namespace GraphicInterface.Views
 {
@@ -157,5 +158,14 @@ namespace GraphicInterface.Views
             dEdgeStart.Text = null;
             dEdgeFinal.Text = null;
         }
+        public void buttonTree (object sendetr, RoutedEventArgs e)
+        {
+            TreeWindow t = new TreeWindow();
+            t.Show();
+            this.Close();
+
+
+        }
+
     }
 }
