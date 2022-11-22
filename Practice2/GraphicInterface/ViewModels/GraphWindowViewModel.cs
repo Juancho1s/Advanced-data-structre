@@ -39,6 +39,18 @@ namespace GraphicInterface.ViewModels
             return mG.theShortestPath(startNode, finalNode);
         }
 
+        public string theShortestRoad(int startNode, int lastNdoe)
+        {
+            return mG.theShortestPath(startNode, lastNdoe);
+        }
+
+        public string getWeight()
+        {
+            string aux = mG.getWeight() + "";
+            mG.setWeight(0);
+            return aux;
+        }
+
         public void resetAll()
         {
             mG.resetAll();
@@ -52,6 +64,11 @@ namespace GraphicInterface.ViewModels
         public void edgeInsertion(int startNode, int finalNode, float weight)
         {
             mG.addEdge(finalNode, startNode, weight);
+        }
+
+        public void deleteEdge(int startNode, int fialNode)
+        {
+            mG.deleteEdge(startNode, fialNode);
         }
     }
 }

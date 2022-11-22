@@ -19,13 +19,5 @@ namespace trees_123_
             this.data = data;
         }
         //////////////////////
-       
-
-        /*Methods*/
-        ////////////////////// 
-        
-
-        /*Getters and setters*/
-        //////////////////////
     }
 }

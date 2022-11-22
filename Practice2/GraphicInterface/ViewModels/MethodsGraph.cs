@@ -55,9 +55,9 @@ namespace GraphicInterface.ViewModels
             float[,] matrix = new float[g.nodesList.Count, g.nodesList.Count];
             for (int i = 0; i < g.nodesList.Count; i++)
             {
-                print += "  " + (i + 1);
+                print += "  " + (g.nodesList[i].data);
             }
-            print += "\n\n1   ";
+            print += $"\n\n{g.nodesList[0].data}   ";
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
@@ -81,7 +81,7 @@ namespace GraphicInterface.ViewModels
                 }
                 if (i < matrix.GetLength(0) - 1)
                 {
-                    print += "\n" + (i + 2) + "   ";
+                    print += "\n" + (g.nodesList[i + 1].data) + "   ";
                 }
             }
             return print;
@@ -370,7 +370,6 @@ namespace GraphicInterface.ViewModels
             {
                 printRoad += i + "  ";
             }
-            this.weight = 0;
             return printRoad;
         }
 
@@ -464,6 +463,21 @@ namespace GraphicInterface.ViewModels
             return false;
         }
 
+        //////////
+        
+
+        ////////// Getters and setters
+        
+        public float getWeight()
+        {
+            return this.weight;
+        }
+
+        public void setWeight(float weight)
+        {
+            this.weight = weight;
+        }
+        
         //////////
     }
 }

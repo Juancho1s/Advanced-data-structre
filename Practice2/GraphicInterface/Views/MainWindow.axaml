@@ -126,6 +126,7 @@
 					
 						<!-- This button is designated to invoke the method "The shortest road to some specified node" -->
 						<Button Name="theShortestRoad"
+								Click="theShortestPath"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -141,6 +142,7 @@
 						
 						<!-- This button is designated to invoke the method "BFS_Traversing" -->
 						<Button Name="BFS_Traversing"
+								Click="BFS_Trigger"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -156,6 +158,7 @@
 						
 						<!-- This button is designated to invoke the method "DFS_Traversing" -->
 						<Button Name="DFS_Traversing"
+								Click="DFS_Trigger"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -189,7 +192,8 @@
 					<Grid Grid.Row="6">
 						
 						<!-- This button is designated to invoke the method "Delete Edge" -->
-						<Button Name="deleteEdge"
+						<Button Name="deleteEdgeBT"
+								Click="deleteEdge"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								HorizontalContentAlignment="Center"
@@ -308,11 +312,11 @@
 					<!-- This section is for the input from the shortest road button -->
 					<Grid Grid.Row="2"
 						  Height="30"
-						  ColumnDefinitions="Auto, Auto, Auto, Auto">
+						  ColumnDefinitions="Auto, Auto, Auto, *, *">
 						
 						<!-- This is the section for the input of the start of the road -->
 						<Grid Grid.Column="0"
-							  Width="80">
+							  Width="70">
 							
 							<!-- This part is to input the Start node of the road -->
 							<TextBox Watermark="Start"
@@ -323,7 +327,7 @@
 						
 						<!-- This is section is just to spesify grafically -->
 						<Grid Grid.Column="1"
-							  Width="40">
+							  Width="20">
 						
 							<!-- This part is just to spesify the direction of the process -->
 							<TextBlock Text="-->" 
@@ -334,7 +338,7 @@
 					
 						<!-- This is the section for the input of the final of the road -->
 						<Grid Grid.Column="2"
-							  Width="80">
+							  Width="70">
 							
 							<!-- This part is to input the  -->
 							<TextBox Watermark="Final"
@@ -343,15 +347,30 @@
 						</Grid>
 						
 						<!-- This section is to show the results of the method -->
-						<Grid Grid.Column="3">
-							
+						<Grid Grid.Column="3"
+							  Width="120">
+							<TextBlock Name="theRoad"
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center">
+								
+							</TextBlock>	
+						</Grid>
+
+						<!-- This part is so show the weight of the path to the node specified -->
+						<Grid Grid.Column="4"
+							  Width="80">
+							<TextBlock Name="weightTB"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center">
+								
+							</TextBlock>
 						</Grid>
 					
 					</Grid>
 					
 					<!-- This is the section for the input of the required date for the traversing (BFS) -->
 					<Grid Grid.Row="3"
-						  ColumnDefinitions="Auto, Auto"
+						  ColumnDefinitions="Auto, *"
 						  Height="30">
 						
 						<!-- This section is to designate the area for the Start Node -->
@@ -362,14 +381,27 @@
 							<TextBox Watermark="Initial Node"
 									 Name="InitialNodeBFS"
 									 HorizontalContentAlignment="Center">
+								
 							</TextBox>
+						</Grid>
+
+						<!-- This section is to output the BFS_Traversing -->
+						<Grid Grid.Column="1">
+
+							<!-- This section is to insert the BFS_Traversing -->
+							<TextBlock Name="BFS"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center">
+								
+							</TextBlock>
+								
 						</Grid>
 							
 					</Grid>
 					
 					<!-- This is the section for the input of the required data for the traversing (DFS) -->
 					<Grid Grid.Row="4"
-						  ColumnDefinitions="Auto, Auto"
+						  ColumnDefinitions="Auto, *"
 						  Height="30">
 						
 						<!-- This section is to designate the area from the Start Node -->
@@ -383,7 +415,19 @@
 							</TextBox>
 						
 						</Grid>
-					
+
+						<!-- This section is to output the DFS_Traversing -->
+						<Grid Grid.Column="1">
+
+							<!-- This section is to insert the DFS_Traversing -->
+							<TextBlock Name="DFS"
+									   HorizontalAlignment="Center"
+									   VerticalAlignment="Center">
+
+							</TextBlock>
+
+						</Grid>
+						
 					</Grid>
 					
 					<!-- This is the sectio to input the node that the user wants it to be erased -->
@@ -506,7 +550,7 @@
 			  Height="150"
 			  Background="Cyan"
 			  Margin="0,1,0,0"
-			  ColumnDefinitions="*, *">
+			  ColumnDefinitions="Auto, *">
 			
 			<!-- This section is to spesify the data structure tha is shown -->
 			<Grid Grid.Column="0"

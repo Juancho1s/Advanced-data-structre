@@ -2,8 +2,80 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="390"
+		Width="500" Height="390"
         x:Class="GraphicInterface.Views.TreeWindow"
-        Title="TreeWindow">
-  
+        Title="TreeWindow"
+		CanResize="False"
+		ScrollViewer.VerticalScrollBarVisibility="Visible"
+		ScrollViewer.HorizontalScrollBarVisibility="Visible">
+
+    <StackPanel>
+
+		<!-- This part will define all the main rows from this window -->
+		<Grid RowDefinitions="Auto, Auto">
+
+			<!-- This part will contain the main navegation through the windows -->
+			<Grid Grid.Row="0"
+				  ColumnDefinitions="Auto, Auto, *"
+				  Height="30"
+				  Background="Blue">
+
+				<!-- This section is made to define the buttons and their actions -->
+				<Grid Grid.Column="0"
+					  Height="30" Width="80">
+
+					<!-- This button is to conect this window with the graph window -->
+					<Button Name="GraphButton"
+							HorizontalAlignment="Center"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							Width="80"
+							Foreground="Cyan"
+							Background="Orange">
+						Graph
+					</Button>
+					
+				</Grid>
+
+				<!-- This section is made to define the button designated to restart all the window -->
+				<Grid Grid.Column="1"
+					  Width="80" Height="30">
+					
+					<!-- This button is designated to errase all the things in this  window -->
+					<Button Name="restartButton"
+							HorizontalContentAlignment="Center"
+							HorizontalAlignment="Center"
+							VerticalContentAlignment="Center"
+							Width="80"
+							Foreground="Cyan"
+							Background="Red">
+						Reset All	
+					</Button>
+					
+				</Grid>
+				
+			</Grid>
+
+			<!-- This secton is designated to input all the buttons from the methods and the results from thoseones -->
+			<Grid Grid.Row="1"
+				  ColumnDefinitions="Auto, *">
+
+				<!-- This section is designated to the buttons for the differents methods -->
+				<Grid Grid.Column="0"
+					  RowDefinitions="Auto, Auto, Auto, Auto">
+
+					<!-- This button will invoke the method called  -->
+					<Button>
+						
+					</Button>
+					
+				</Grid>
+				
+			</Grid>
+			
+		</Grid>
+			
+    </StackPanel>
+	
 </Window>
