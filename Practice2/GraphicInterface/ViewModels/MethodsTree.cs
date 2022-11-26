@@ -1,39 +1,50 @@
-﻿using DynamicData;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 
-namespace GraphicInterface.ViewModels
-{
-    internal class MethodsTrees
+namespace trees_123_
+{    
+    internal class MethodsTree
     {
         /*Attributs*/
-        List<NodeTrees> nodesList = new();
         private bool x = true;
+        public NodeTree[] root = new NodeTree[1];
+        public List<int> nodesList = new();
         ///////
 
         /*Methods*/
 
+        // Root
+        public void rootInsertion(int newRoot)
+        {
+            root[0] = new NodeTree(newRoot);
+        }
+        ///////
+
         // Traverse
-        public string traverseIn_Order(NodeTrees tree)
+        public string traverseIn_Order(NodeTree tree)
         {
             string ret = "";
             if (tree.leftNode != null)
             {
                 ret += traverseIn_Order(tree.leftNode);
-
+                
             }
             ret += tree.data + "   ";
             if (tree.rightNode != null)
-            {
+            {                
                 ret += traverseIn_Order(tree.rightNode);
             }
             return ret;
         }
-
-        public string traversePre_Order(NodeTrees tree)
+        
+        public string traversePre_Order(NodeTree tree)
         {
             string ret = "";
             ret += tree.data + "   ";
@@ -41,7 +52,7 @@ namespace GraphicInterface.ViewModels
             {
                 ret += traversePre_Order(tree.leftNode);
 
-            }
+            }            
             if (tree.rightNode != null)
             {
                 ret += traversePre_Order(tree.rightNode);
@@ -49,7 +60,7 @@ namespace GraphicInterface.ViewModels
             return ret;
         }
 
-        public string traversePost_Order(NodeTrees tree)
+        public string traversePost_Order(NodeTree tree)
         {
             string ret = "";
             if (tree.leftNode != null)
@@ -65,24 +76,27 @@ namespace GraphicInterface.ViewModels
             return ret;
         }
         ///////
-
+        
 
         //insert
-        public void insertNewNode(NodeTrees tree, NodeTrees newNode, int refLefthRight, int refToFather)
+        public void insertNewNode(NodeTree tree, NodeTree newNode, string refLefthRight, int refToFather)
         {
             looking(tree, newNode);
             if (this.x == false)
             {
                 Console.WriteLine("The node specified to insert is already in the list.");
+                return;
             }
             insertNewNodeLooking(tree, newNode, refLefthRight, refToFather);
             if (this.x == true)
             {
                 Console.WriteLine("The node specified as father was never found.");
+                return;
             }
+            nodesList.Add(newNode.data);
             this.x = true;
         }
-        private void insertNewNodeLooking(NodeTrees tree, NodeTrees newNode, int refLefthRight, int refToFather)
+        private void insertNewNodeLooking(NodeTree tree, NodeTree newNode, string refLefthRight, int refToFather)
         {
             if (this.x == false)
             {
@@ -90,7 +104,7 @@ namespace GraphicInterface.ViewModels
             }
             if (tree.data == refToFather)
             {
-                if (tree.leftNode == null & refLefthRight == 0)
+                if (tree.leftNode == null & refLefthRight == "Left")
                 {
                     newNode.rootData = tree.data;
                     newNode.rootNode = tree;
@@ -99,12 +113,12 @@ namespace GraphicInterface.ViewModels
                     this.x = false;
                     return;
                 }
-                else if (tree.rightNode == null & refLefthRight == 1)
+                else if (tree.rightNode == null & refLefthRight == "Right")
                 {
                     newNode.rootData = tree.data;
                     newNode.rootNode = tree;
                     newNode.leftRight = 1;
-                    tree.rightNode = newNode;
+                    tree.rightNode = newNode;                    
                     this.x = false;
                     return;
                 }
@@ -121,10 +135,10 @@ namespace GraphicInterface.ViewModels
                 {
                     insertNewNodeLooking(tree.rightNode, newNode, refLefthRight, refToFather);
                 }
-            }
+            }          
         }
 
-        public void insertNewNode(NodeTrees tree, NodeTrees newNode, int refToFather)
+        public void insertNewNode(NodeTree tree, NodeTree newNode, int refToFather)
         {
             looking(tree, newNode);
             if (this.x == false)
@@ -138,7 +152,7 @@ namespace GraphicInterface.ViewModels
             }
             this.x = true;
         }
-        private void insertNewNodeLooking(NodeTrees tree, NodeTrees newNode, int refToFather)
+        private void insertNewNodeLooking(NodeTree tree, NodeTree newNode, int refToFather)
         {
             if (this.x == false)
             {
@@ -184,7 +198,7 @@ namespace GraphicInterface.ViewModels
             }
         }
 
-        public void insertNewNode(NodeTrees tree, NodeTrees newNode)
+        public void insertNewNode(NodeTree tree, NodeTree newNode)
         {
             looking(tree, newNode);
             if (this.x == false)
@@ -194,10 +208,10 @@ namespace GraphicInterface.ViewModels
             if (this.x == true)
             {
                 adding(tree, newNode);
-            }
+            }            
             this.x = true;
         }
-        private void adding(NodeTrees tree, NodeTrees newNode)
+        private void adding(NodeTree tree, NodeTree newNode)
         {
             if (tree.leftNode == null)
             {
@@ -214,7 +228,7 @@ namespace GraphicInterface.ViewModels
             }
         }
 
-        private void looking(NodeTrees tree, NodeTrees newNode)
+        private void looking(NodeTree tree, NodeTree newNode)
         {
             if (this.x == false)
             {
@@ -223,6 +237,7 @@ namespace GraphicInterface.ViewModels
             if (tree.data == newNode.data)
             {
                 this.x = false;
+                return;
             }
             if (tree.leftNode != null | tree.rightNode != null)
             {
@@ -239,10 +254,10 @@ namespace GraphicInterface.ViewModels
 
         }
         ///////
-
+        
 
         /*Level counter*/
-        public int levelCounter(NodeTrees tree)
+        public int levelCounter(NodeTree tree)
         {
             int aux1 = 0;
             int aux2 = 0;
@@ -256,20 +271,20 @@ namespace GraphicInterface.ViewModels
                 if (tree.rightNode != null)
                 {
                     aux2 += levelCounter(tree.rightNode);
-                }
+                }                
             }
             if (tree.leftNode != null | tree.rightNode != null)
-            {
+            {                
                 counter += Math.Max(aux1, aux2);
             }
             return counter;
         }
         ///////
-
+        
 
         /*Delete*/
-        public void delete(NodeTrees tree, int dNode)
-        {
+        public void delete(NodeTree tree, int dNode)
+        {            
             deleteLooking(tree, dNode);
             if (this.x == true)
             {
@@ -277,7 +292,7 @@ namespace GraphicInterface.ViewModels
             }
             this.x = true;
         }
-        private void deleteLooking(NodeTrees tree, int dNode)
+        private void deleteLooking(NodeTree tree, int dNode)
         {
             if (this.x == false)
             {
@@ -297,32 +312,37 @@ namespace GraphicInterface.ViewModels
 
             if (tree.rightNode != null)
             {
-                if (tree.rightNode.data == dNode)
+                if (tree.rightNode.data == dNode) 
                 {
                     tree.rightNode = null;
                     this.x = false;
                     return;
                 }
                 deleteLooking(tree.rightNode, dNode);
-            }
+            }            
         }
         ///////
 
 
         /*search and road*/
-        public List<int> searchNode(NodeTrees tree, int data)
+        public string searchNode(NodeTree tree, int data)
         {
-            List<int> listReturn = new List<int>();
-            listReturn = search(tree, data, listReturn);
+            List<int> listReturn2 = new List<int>();
+            listReturn2 = search(tree, data, listReturn2);
+            string listReturn1 = "";
+            foreach (int i in listReturn2)
+            {
+                listReturn1 += i + "  ";
+            }
             if (this.x == true)
             {
                 Console.WriteLine("The node spesified to search was not found.");
-                return listReturn;
+                return listReturn1;
             }
             this.x = true;
-            return listReturn;
+            return listReturn1;
         }
-        private List<int> search(NodeTrees tree, int data, List<int> listReturn)
+        private List<int> search(NodeTree tree, int data, List<int> listReturn)
         {
             if (this.x != false)
             {
@@ -345,7 +365,7 @@ namespace GraphicInterface.ViewModels
             }
             return listReturn;
         }
-        private List<int> road(NodeTrees node)
+        private List<int> road(NodeTree node)
         {
             string message = "The road to the node is; ";
             List<int> listReturn = new List<int>();
@@ -368,44 +388,44 @@ namespace GraphicInterface.ViewModels
 
         /*Print tree*/
         //This method uses the level counter method 
-        public string getTreeStructure(NodeTrees tree)
+        public string getTreeStructure(NodeTree tree)
         {
             int levels = levelCounter(tree);
             return assembling(tree, levels, levels);
         }
-        private string assembling(NodeTrees tree, int levels, int aux)
+        private string assembling(NodeTree tree, int levels, int aux)
         {
-            string ret = "";
+            string ret = "";            
             for (int i = aux; i < levels; i++)
             {
                 ret += "-- ";
             }
             if (tree.rootNode == null)
             {
-                ret += tree.data + " SNode" + "\n";
+                ret += tree.data + " S" + "\n";
             }
-            else if (tree.leftRight == 0)
+            else if(tree.leftRight == 0)
             {
-                ret += tree.data + " LNode" + "\n";
+                ret += tree.data + " L" + "\n";
             }
             else if (tree.leftRight == 1)
             {
-                ret += tree.data + " RNode" + "\n";
+                ret += tree.data + " R" + "\n";
             }
 
             if (tree.leftNode != null)
             {
-                ret += assembling(tree.leftNode, levels, aux - 1);
+                ret += assembling(tree.leftNode, levels, aux - 1);                    
             }
-            if (tree.rightNode != null)
+            if(tree.rightNode != null)
             {
                 ret += assembling(tree.rightNode, levels, aux - 1);
             }
             return ret;
         }
         ///////
-
-
+                
+        
         //////////////
     }
 }

@@ -2,8 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="390"
-		Width="500" Height="390"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
+		Width="500" Height="300"
         x:Class="GraphicInterface.Views.TreeWindow"
         Title="TreeWindow"
 		CanResize="False"
@@ -19,7 +19,7 @@
 			<Grid Grid.Row="0"
 				  ColumnDefinitions="Auto, *"
 				  Height="30"
-				  Background="Aquamarine">
+				  Background="Blue">
 
 				<!-- This section is made to define the buttons and their actions from the top of the window -->
 				<Grid Grid.Column="0"
@@ -86,7 +86,8 @@
 
 				<!-- This section is designated to the buttons for the differents methods -->
 				<Grid Grid.Column="0"
-					  RowDefinitions="Auto, Auto, Auto, *">
+					  Background="Cyan"
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
 					<Grid Grid.Row="0"
 						  Height="50">
@@ -95,7 +96,9 @@
 						<Button VerticalContentAlignment="Center"
 								HorizontalContentAlignment="Center"
 								HorizontalAlignment="Center"
-								Width="160" Height="50">
+								Width="160" Height="50"
+								Background="CadetBlue"
+								Click="insertion">
 							Insert Node
 						</Button>
 
@@ -109,7 +112,8 @@
 						<Button VerticalContentAlignment="Center"
 								HorizontalContentAlignment="Center"
 								HorizontalAlignment="Center"
-								Width="160" Height="50">
+								Width="160" Height="50"
+								Background="CadetBlue">
 							Search
 						</Button>
 
@@ -117,28 +121,63 @@
 					
 					<!-- This sectionis designated to the button that triggers the level counter method -->
 					<Grid Grid.Row="2"
-						  Height="50">
+						  Height="30">
 						
-						<!-- This button triggers the method level's counter -->
-						<Button VerticalContentAlignment="Center"
-								HorizontalContentAlignment="Center"
-								HorizontalAlignment="Center"
-								Width="160" Height="50">
-							Level's Counter
-						</Button>
+						<!-- This is the tittle from the next section -->
+						<TextBlock VerticalAlignment="Center"
+								   HorizontalAlignment="Center">
+							Levels Counter:
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This section will contain the tittle from the traversing method() -->
+					<Grid Grid.Row="3"
+						  Height="30">
+
+						<!-- This is the tittle from the traversal shown next -->
+						<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center">
+							In_Order:
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This section will contain the tittle from the traversing method() -->
+					<Grid Grid.Row="4"
+						  Height="30">
+
+						<!-- This is the tittle from the traversal shown next -->
+						<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center">
+							Post_Order:
+						</TextBlock>
+
+					</Grid>
+
+					<!-- This section will contain the tittle from the traversing method() -->
+					<Grid Grid.Row="5"
+						  Height="30">
+
+						<!-- This is the tittle from the traversal shown next -->
+						<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center">
+							Pre_Order:
+						</TextBlock>
 						
 					</Grid>
 					
 					<!-- This section is designated for the button Delete Node -->
-					<Grid Grid.Row="3"
-						  Width="160" Height="240">
+					<Grid Grid.Row="6"
+						  Width="160" Height="50">
 						
 						<!-- This button triggers the Delete Node method -->
 						<Button VerticalContentAlignment="Center"
 								HorizontalContentAlignment="Center"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
-								Width="180" Height="50">
+								Width="160" Height="50"
+								Background="Red">
 							Delete Node
 						</Button>
 
@@ -148,7 +187,231 @@
 				
 				<!-- This section will contain all the inputs for the differents methods from the buttonse
 					(It's important that you follow the interface as liniary)-->
-				<Grid Grid.Column="1">
+				<Grid Grid.Column="1"
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+					  Width="240"
+					  Background="Cyan">
+
+					<!-- This section will contain the input from the inset node button -->
+					<Grid Grid.Row="0"
+						  Height="50"
+						  ColumnDefinitions="Auto, Auto, Auto">
+
+						<!-- This section will contain the new node's data -->
+						<Grid Grid.Column="0"
+							  Width="80">
+
+							<!-- Here you can input the data from the new node -->
+							<TextBox VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 HorizontalContentAlignment="Center"
+									 VerticalContentAlignment="Center"
+									 Watermark="Data"
+									 Name="newNodeData"
+									 FontSize="12">
+								
+							</TextBox>
+							
+						</Grid>
+
+						<!-- This section will contain the new node's father -->
+						<Grid Grid.Column="1"
+							  Width="80">
+
+							<!-- Here you can input the data from the node which you want the new node will be added -->
+							<StackPanel Orientation="Vertical"
+										VerticalAlignment="Center">
+
+								<!-- Here all the nodes that you can contect with are going to state -->
+								<ComboBox Name="NodeInsertion"
+										  FontSize="12">
+									
+								</ComboBox>
+								
+							</StackPanel>
+
+						</Grid>
+
+						<!-- This section will contain the position from the new node -->
+						<Grid Grid.Column="2">
+
+							<!-- This sectio will contain the position were you can insert the node -->
+							<StackPanel Orientation="Vertical"
+										VerticalAlignment="Center">
+
+								<!-- This is the combo box which will contain those positions -->
+								<ComboBox Name="positionSelection"
+										  FontSize="12">
+									
+								</ComboBox>
+								
+							</StackPanel>
+							
+						</Grid>
+
+					</Grid>
+
+					<!-- This section will have the input and the output from the method search -->
+					<Grid Grid.Row="1"
+						  Height="50"
+						  ColumnDefinitions="Auto, Auto">
+
+						<!-- This section will contain the imput from the search method -->
+						<Grid Grid.Column="0"
+							  Width="80">
+							
+							<!-- This is the node which the method looks for -->
+							<TextBox VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 HorizontalContentAlignment="Center"
+									 VerticalContentAlignment="Center"
+									 Watermark="Data"
+									 FontSize="12">
+								
+							</TextBox>
+							
+						</Grid>
+
+						<!-- This section will contain the output from the search method -->
+						<Grid Grid.Column="1"
+							  VerticalAlignment="Center"
+							  HorizontalAlignment="Center">
+
+							<!-- This is the output -->
+							<TextBlock VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   FontSize="12">
+								
+							</TextBlock>
+							
+						</Grid>
+						
+					</Grid>
+
+					<!-- This section will contain the output from the Level Counter method -->
+					<Grid Grid.Row="2"
+						  Height="30"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Center">
+
+						<!-- This is the output -->
+						<TextBlock VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Name="LevelCounter"
+								   FontSize="12">
+							
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This section will contain the output from the In_Order method -->
+					<Grid Grid.Row="3"
+						  Height="30"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Center">
+
+						<!-- This is the output -->
+						<TextBlock VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Name="In_OrderTraversing"
+								   FontSize="12">
+							
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This section will contai the output from the Post_Order method -->
+					<Grid Grid.Row="4"
+						  Height="30"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Center">
+
+						<!-- This is the output -->
+						<TextBlock VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Name="Post_OrderTraversing"
+								   FontSize="12">
+							
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This section will contai the output from the Pre_Oreder method -->
+					<Grid Grid.Row="5"
+						  Height="30"
+						  VerticalAlignment="Center"
+						  HorizontalAlignment="Center">
+
+						<!-- This is the output -->
+						<TextBlock VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   Name="Pre_OrderTraversing"
+								   FontSize="12">
+							
+						</TextBlock>
+						
+					</Grid>
+
+					<!-- This is the input from the Delete Node method -->
+					<Grid Grid.Row="6"
+						  ColumnDefinitions="Auto, Auto, Auto"
+						  Height="50">
+
+						<!-- This section is just to specify the action that the user can do -->
+						<Grid Grid.Column="0"
+							  Width="80">
+
+							<!-- Warning message -->
+							<TextBlock VerticalAlignment="Center"
+									   HorizontalAlignment="Right">
+								⚠
+							</TextBlock>
+							
+						</Grid>
+
+						<!-- This section will contain the input from the delete node method -->
+						<Grid Grid.Column="1"
+							  Width="80"
+							  VerticalAlignment="Center">
+
+							<!-- This is the Node spesified to be erased -->
+							<TextBox HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 VerticalContentAlignment="Center"
+									 Watermark="Node"
+									 Name="DeleteInput">
+
+							</TextBox>
+							
+						</Grid>
+
+						<!-- This sectio is just to specify the actio that the user can do -->
+						<Grid Grid.Column="2"
+							  Width="80">
+
+							<!-- Warning message -->
+							<TextBlock HorizontalAlignment="Left"
+									   VerticalAlignment="Center">
+								⚠
+							</TextBlock>
+							
+						</Grid>
+						
+					</Grid>
+					
+				</Grid>
+
+				<!-- This section is to show the tree structure -->
+				<Grid Grid.Column="2"
+					  Width="100"
+					  Background="LightSkyBlue">
+
+					<!-- This section will contain all the tree structure -->
+					<TextBlock HorizontalAlignment="Center"
+							   VerticalAlignment="Center"
+							   FontSize="15"
+							   Name="treeStructure">
+					</TextBlock>
 					
 				</Grid>
 				

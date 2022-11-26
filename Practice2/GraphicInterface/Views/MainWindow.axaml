@@ -444,7 +444,7 @@
 									VerticalAlignment="Center">
 							
 							<!-- This part is just to enphasize the action that the user can do -->
-							<TextBlock Text="!!!!" 
+							<TextBlock Text="⚠" 
 							   HorizontalAlignment="Right" 
 							   VerticalAlignment="Center"/>
 						
@@ -468,7 +468,7 @@
 									VerticalAlignment="Center">
 							
 							<!-- This part is just to enphasize the action which the user can do -->
-							<TextBlock Text="!!!!" 
+							<TextBlock Text="⚠" 
 							   HorizontalAlignment="Left" 
 							   VerticalAlignment="Center"/>
 
@@ -488,7 +488,7 @@
 									VerticalAlignment="Center">
 							
 							<!-- This part is just to enphasize the action that the user can do -->
-							<TextBlock Text="!!!!" 
+							<TextBlock Text="⚠" 
 							   HorizontalAlignment="Right" 
 							   VerticalAlignment="Center"/>
 						
@@ -535,7 +535,7 @@
 									VerticalAlignment="Center">
 							
 							<!-- This section is enphasizing -->
-							<TextBlock Text="!!!!" 
+							<TextBlock Text="⚠" 
 							   HorizontalAlignment="Left" 
 							   VerticalAlignment="Center"/>
 
