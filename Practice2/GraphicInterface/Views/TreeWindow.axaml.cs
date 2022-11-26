@@ -25,12 +25,14 @@ namespace GraphicInterface.Views
         public void insertion(object sender, RoutedEventArgs e)
         {
             newNode = Int32.Parse(newNodeData.Text);
-            father = NodeInsertion.SelectedIndex.ToString();
-            position = positionSelection.SelectedIndex.ToString();
+            father = NodeInsertion.SelectedItem.ToString();
+            position = positionSelection.SelectedItem.ToString();
             vM.insertion(newNode, father, position);
             treeStructurePrint(sender, e);
             In_OrderTraverse(sender, e);
-            positionSelection.Items = vM.positionsCB();
+            Post_OrderTraverse(sender, e);
+            Pre_OrderTraverse(sender, e);
+            NodeInsertion.Items = vM.Nodes();
             NodeInsertion.SelectedIndex = 0;
         }
 
@@ -41,7 +43,17 @@ namespace GraphicInterface.Views
 
         public void In_OrderTraverse(object sender, RoutedEventArgs e)
         {
-            In_OrderTraversing.Text = vM.In_OrderTravers();
+            In_OrderTraversing.Text = vM.In_OrderTraverse();
+        }
+
+        public void Post_OrderTraverse(object sender, RoutedEventArgs e)
+        {
+            Post_OrderTraversing.Text = vM.Post_OrderTraverse();
+        }
+
+        public void Pre_OrderTraverse(object sender, RoutedEventArgs e)
+        {
+            Pre_OrderTraversing.Text = vM.Pre_OrderTraverse();
         }
 
         public void windowGraph(object sender, RoutedEventArgs e)

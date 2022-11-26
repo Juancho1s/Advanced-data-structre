@@ -409,7 +409,7 @@
 					<!-- This section will contain all the tree structure -->
 					<TextBlock HorizontalAlignment="Center"
 							   VerticalAlignment="Center"
-							   FontSize="15"
+							   FontSize="12"
 							   Name="treeStructure">
 					</TextBlock>
 					

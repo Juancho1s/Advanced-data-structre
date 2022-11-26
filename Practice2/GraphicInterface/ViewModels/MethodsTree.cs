@@ -24,6 +24,7 @@ namespace trees_123_
         public void rootInsertion(int newRoot)
         {
             root[0] = new NodeTree(newRoot);
+            nodesList.Add(newRoot);
         }
         ///////
 

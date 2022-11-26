@@ -21,7 +21,7 @@ namespace GraphicInterface.ViewModels
             foreach (int i in mT.nodesList)
             {
                 nodesCB.Add(i.ToString());
-            };
+            }
             return nodesCB;
         }
 
@@ -53,9 +53,19 @@ namespace GraphicInterface.ViewModels
             mT.insertNewNode(mT.root[0], new NodeTree(newNode), position, Int32.Parse(father));
         }
 
-        public string In_OrderTravers()
+        public string In_OrderTraverse()
         {
             return mT.traverseIn_Order(mT.root[0]);
+        }
+
+        public string Post_OrderTraverse()
+        {
+            return mT.traversePost_Order(mT.root[0]);
+        }
+
+        public string Pre_OrderTraverse()
+        {
+            return mT.traversePre_Order(mT.root[0]);
         }
 
         public List<int> itemsCB()
