@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using GraphicInterface.ViewModels;
 using System;
@@ -10,6 +11,7 @@ namespace GraphicInterface.Views
         TreeWindowViewModel vM = new();
 
         int newNode = 0;
+        string searchedNode = "";
         string father = "";
         string position = "";
 
@@ -18,22 +20,46 @@ namespace GraphicInterface.Views
             InitializeComponent();
             NodeInsertion.Items = vM.Nodes();
             positionSelection.Items = vM.positionsCB();
-            NodeInsertion.SelectedIndex = 0;
-            positionSelection.SelectedIndex = 0;
         }
+
+        public void searching(object sender, RoutedEventArgs e)
+        {
+            if (SearchB.SelectedItem != null)
+            {
+                searchedNode = (string)SearchB.SelectedItem;
+                Road.Text = vM.searching(Int32.Parse(searchedNode));
+            }
+        }
+
+
 
         public void insertion(object sender, RoutedEventArgs e)
         {
+            if (newNodeData.Text == null)
+            {
+                return;
+            }
             newNode = Int32.Parse(newNodeData.Text);
-            father = NodeInsertion.SelectedItem.ToString();
-            position = positionSelection.SelectedItem.ToString();
+            if (NodeInsertion.SelectedItem != null)
+            {
+                father = (string)NodeInsertion.SelectedItem;
+            }
+            else
+            {
+                father = "Defaul";
+            }
+            if (positionSelection.SelectedItem != null)
+            {
+                position = (string)positionSelection.SelectedItem;
+            }
+            else
+            {
+                position = "Defaul";
+            }
             vM.insertion(newNode, father, position);
-            treeStructurePrint(sender, e);
-            In_OrderTraverse(sender, e);
-            Post_OrderTraverse(sender, e);
-            Pre_OrderTraverse(sender, e);
-            NodeInsertion.Items = vM.Nodes();
-            NodeInsertion.SelectedIndex = 0;
+            NodeInsertion.Items = null;
+            SearchB.Items = null;
+            update(sender, e);
         }
 
         public void treeStructurePrint(object sender, RoutedEventArgs e)
@@ -54,6 +80,27 @@ namespace GraphicInterface.Views
         public void Pre_OrderTraverse(object sender, RoutedEventArgs e)
         {
             Pre_OrderTraversing.Text = vM.Pre_OrderTraverse();
+        }
+
+        public void levelPrint(object sender, RoutedEventArgs e)
+        {
+            LevelCounter.Text = vM.levels();
+        }
+
+        public void NodesInsertin(object sender, RoutedEventArgs e)
+        {
+            SearchB.Items = vM.Nodes();
+            NodeInsertion.Items = vM.Nodes();
+        }
+
+        public void update(object sender, RoutedEventArgs e)
+        {
+            treeStructurePrint(sender, e);
+            In_OrderTraverse(sender, e);
+            Post_OrderTraverse(sender, e);
+            Pre_OrderTraverse(sender, e);
+            levelPrint(sender, e);
+            NodesInsertin(sender, e);
         }
 
         public void windowGraph(object sender, RoutedEventArgs e)

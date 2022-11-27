@@ -113,6 +113,7 @@
 								HorizontalContentAlignment="Center"
 								HorizontalAlignment="Center"
 								Width="160" Height="50"
+								Click="searching"
 								Background="CadetBlue">
 							Search
 						</Button>
@@ -177,6 +178,7 @@
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								Width="160" Height="50"
+								Foreground="Cyan"
 								Background="Red">
 							Delete Node
 						</Button>
@@ -260,26 +262,31 @@
 						<Grid Grid.Column="0"
 							  Width="80">
 							
-							<!-- This is the node which the method looks for -->
-							<TextBox VerticalAlignment="Center"
-									 HorizontalAlignment="Center"
-									 HorizontalContentAlignment="Center"
-									 VerticalContentAlignment="Center"
-									 Watermark="Data"
-									 FontSize="12">
+							<!-- This section will contain all the nodes that you can search -->
+							<StackPanel Orientation="Vertical"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center">
 								
-							</TextBox>
+								<!-- Here all the nodes taht you can search are -->
+								<ComboBox Name="SearchB"
+										  FontSize="12">
+									
+								</ComboBox>
+							
+							</StackPanel>
 							
 						</Grid>
 
 						<!-- This section will contain the output from the search method -->
 						<Grid Grid.Column="1"
+							  Width="160"
 							  VerticalAlignment="Center"
 							  HorizontalAlignment="Center">
 
 							<!-- This is the output -->
 							<TextBlock VerticalAlignment="Center"
 									   HorizontalAlignment="Center"
+									   Name="Road"
 									   FontSize="12">
 								
 							</TextBlock>

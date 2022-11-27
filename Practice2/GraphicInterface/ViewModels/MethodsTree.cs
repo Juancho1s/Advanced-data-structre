@@ -151,6 +151,7 @@ namespace trees_123_
             {
                 Console.WriteLine("The node specified as father was never found.");
             }
+            nodesList.Add(newNode.data);
             this.x = true;
         }
         private void insertNewNodeLooking(NodeTree tree, NodeTree newNode, int refToFather)
@@ -209,7 +210,8 @@ namespace trees_123_
             if (this.x == true)
             {
                 adding(tree, newNode);
-            }            
+            }
+            nodesList.Add(newNode.data);
             this.x = true;
         }
         private void adding(NodeTree tree, NodeTree newNode)

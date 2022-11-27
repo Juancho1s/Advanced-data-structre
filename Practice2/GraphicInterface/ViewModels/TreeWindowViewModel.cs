@@ -17,7 +17,6 @@ namespace GraphicInterface.ViewModels
         public List<string> Nodes()
         {
             nodesCB.Clear();
-            nodesCB.Add("Defaul");
             foreach (int i in mT.nodesList)
             {
                 nodesCB.Add(i.ToString());
@@ -25,9 +24,18 @@ namespace GraphicInterface.ViewModels
             return nodesCB;
         }
 
+        public string searching(int searchedNode)
+        {
+            return mT.searchNode(mT.root[0], searchedNode);
+        }
+
+        public string levels()
+        {
+            return mT.levelCounter(mT.root[0]).ToString();
+        }
+
         public List<string> positionsCB()
         {
-            positionsL.Add("Defaul");
             positionsL.Add("Left");
             positionsL.Add("Right");
             return positionsL;
