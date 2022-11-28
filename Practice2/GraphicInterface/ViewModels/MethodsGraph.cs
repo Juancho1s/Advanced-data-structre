@@ -14,6 +14,7 @@ namespace GraphicInterface.ViewModels
 
         private Graph g = new();
         private float weight = 0;
+        private float weightL = 0;
 
         //////////      
 
@@ -417,6 +418,90 @@ namespace GraphicInterface.ViewModels
 
 
 
+        //////////The longest path
+
+        public string theLongestPath(int start_Node, int last_Node)
+        {
+            bool x_1 = false, x_2 = false;
+            string printRoad = "";
+            List<int> road = new List<int>();
+            List<int> auxTraversing = new List<int>();
+            List<NodesGraph> traversing = new List<NodesGraph>();
+            float weight = 0, auxWeight = 0;
+            int index = 0;
+            for (index = 0; index < g.nodesList.Count; index++)
+            {
+                if (g.nodesList[index].data == start_Node)
+                {
+                    x_1 = true;
+                    break;
+                }
+            }
+            foreach (NodesGraph i in g.nodesList)
+            {
+                if (i.data == last_Node)
+                {
+                    x_2 = true;
+                    break;
+                }
+            }
+            if (x_1 == false | x_2 == false)
+            {
+                Console.WriteLine("One of the specified nodes by arguments was not found in the system.");
+                return printRoad;
+            }
+            scoutL(g.nodesList[index], road, traversing, auxTraversing, weight, auxWeight, last_Node);
+            foreach (int i in road)
+            {
+                printRoad += i + "  ";
+            }
+            return printRoad;
+        }
+
+        private void scoutL(NodesGraph node, List<int> road, List<NodesGraph> traversing, List<int> auxTraversing, float weight, float auxWeight, int last_Node)
+        {
+            float auxWeight_2 = 0;
+            traversing.Add(node);
+            auxTraversing.Add(node.data);
+            if (road.Count >= traversing.Count & road.Count > 0)
+            {
+                traversing.RemoveAt(traversing.Count - 1);
+                auxTraversing.Remove(node.data);
+                return;
+            }
+            if (traversing.Count > 1)
+            {
+                auxWeight_2 = weight_search(traversing[traversing.Count - 2].data, node.data);
+                auxWeight += auxWeight_2;
+            }
+            if (node.data == last_Node)
+            {
+                road.Clear();
+                foreach (NodesGraph restructuring in traversing)
+                {
+                    road.Add(restructuring.data);
+                }
+                this.weightL = auxWeight;
+                traversing.RemoveAt(traversing.Count - 1);
+                auxTraversing.Remove(node.data);
+                return;
+            }
+            foreach (NodesGraph checking in node.nodesConectios)
+            {
+                if (checkingBool(checking.data, auxTraversing) == false)
+                {
+                    scoutL(checking, road, traversing, auxTraversing, weight, auxWeight, last_Node);
+                }
+            }
+            auxWeight -= auxWeight_2;
+            traversing.RemoveAt(traversing.Count - 1);
+            auxTraversing.Remove(node.data);
+        }
+
+        //////////
+
+
+
         //////////Looking for weight
 
         private float weight_search(int startNode, int finalNode)
@@ -478,6 +563,16 @@ namespace GraphicInterface.ViewModels
             this.weight = weight;
         }
         
+        public float getWeightL()
+        {
+            return this.weightL;
+        }
+
+        public void setWeightL(float weightL)
+        {
+            this.weightL = weightL;
+        }
+
         //////////
     }
 }

@@ -3,8 +3,8 @@
         xmlns:vm="using:GraphicInterface.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="390"
-		Width="500" Height="390"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="420"
+		Width="500" Height="420"
         x:Class="GraphicInterface.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="GraphicInterface"
@@ -81,12 +81,12 @@
 			<Grid Grid.Row="1" 
 				  ColumnDefinitions="Auto, Auto"
 				  Background="Cyan"
-				  Height="210">
+				  Height="240">
 
 				<!-- This sectio will contains all the buttons that trigger the differents methods -->
 				<Grid Grid.Column="0" 
 					  Width="160"
-					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 
 					<!-- This is the section for the new node button -->	
 					<Grid Grid.Row="0">
@@ -135,12 +135,30 @@
 								VerticalContentAlignment="Center"
 								Width="160" Height="30"
 								Background="CadetBlue">
-							The Shortest Road
+							The Shortest Path
 						</Button>
 
 					</Grid>
 					
-					<Grid Grid.Row="3">
+					<!-- This section will contai the button to trigger the method called The longest road -->
+					<Grid Grid.Row="3"
+						  Height="30" Width="160">
+
+						<!-- This button will trigger the method -->
+						<Button Name="theLongestRoad"
+								Click="theLongestPath"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								Width="160" Height="30"
+								Background="CadetBlue">
+							The Longest Path
+						</Button>
+						
+					</Grid>
+					
+					<Grid Grid.Row="4">
 						
 						<!-- This button is designated to invoke the method "BFS_Traversing" -->
 						<Button Name="BFS_Traversing"
@@ -156,7 +174,7 @@
 						
 					</Grid>
 					
-					<Grid Grid.Row="4">
+					<Grid Grid.Row="5">
 						
 						<!-- This button is designated to invoke the method "DFS_Traversing" -->
 						<Button Name="DFS_Traversing"
@@ -173,7 +191,7 @@
 					</Grid>
 
 					<!-- This is the section for the button -->
-					<Grid Grid.Row="5">
+					<Grid Grid.Row="6">
 						
 						<!-- This button is designated to invoke the method "Delete node" -->
 						<Button Name="deleteNode"
@@ -191,7 +209,7 @@
 					</Grid>
 
 					<!-- This is the section for the button -->
-					<Grid Grid.Row="6">
+					<Grid Grid.Row="7">
 						
 						<!-- This button is designated to invoke the method "Delete Edge" -->
 						<Button Name="deleteEdgeBT"
@@ -212,7 +230,7 @@
 				
 				<!-- This section is dedicated to the input of the methods from the selected data structur -->
 				<Grid Grid.Column="1"
-					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+					  RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
 					
 					<!-- This section is for the input from the insert node button -->
 					<Grid Grid.Row="0"
@@ -369,9 +387,88 @@
 						</Grid>
 					
 					</Grid>
+
+					<!-- This section will contai the input from the method called The longest path -->
+					<Grid Grid.Row="3"
+						  Height="30"
+						  ColumnDefinitions="Auto, Auto, Auto, Auto, *">
+
+						<!-- This section is to place the input -->
+						<Grid Grid.Column="0"
+							  Width="70">
+
+							<!-- This section will contain the input for the startNode -->
+							<TextBox Name="StartNodeTL"
+									 VerticalContentAlignment="Center"
+									 HorizontalContentAlignment="Center"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 Width="70"
+									 Watermark="Start">
+								
+							</TextBox>
+							
+						</Grid>
+
+						<!-- This section is just to specify teh direction from the method -->
+						<StackPanel Grid.Column="1"
+									Width="20"
+									VerticalAlignment="Center">
+
+							<!-- Text to specify -->
+							<TextBlock HorizontalAlignment="Center"
+									   VerticalAlignment="Center">
+								-->
+							</TextBlock>
+							
+						</StackPanel>
+
+						<!-- This section will contain the input for the final node -->
+						<Grid Grid.Column="2">
+
+							<!-- This is the input from the final node -->
+							<TextBox Name="FinalNodeTL"
+									 VerticalContentAlignment="Center"
+									 HorizontalContentAlignment="Center"
+									 HorizontalAlignment="Center"
+									 VerticalAlignment="Center"
+									 Width="70"
+									 Watermark="Final">
+								
+							</TextBox>
+							
+						</Grid>
+
+						<!-- This section will contain the longest road -->
+						<Grid Grid.Column="3"
+							  Width="120">
+
+							<!-- This is the road -->
+							<TextBlock Name="TheRoadTL"
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center">
+								
+							</TextBlock>
+
+						</Grid>
+
+						<!-- This is the section where the weight of the final road will be spesified -->
+						<StackPanel Grid.Column="4"
+									VerticalAlignment="Center">
+
+							<!-- This section will contain the weight from the road -->
+							<TextBlock Name="WeightTL"
+									   VerticalAlignment="Center"
+									   HorizontalAlignment="Center">
+								
+							</TextBlock>
+							
+						</StackPanel>
+						
+					</Grid>
 					
 					<!-- This is the section for the input of the required date for the traversing (BFS) -->
-					<Grid Grid.Row="3"
+					<Grid Grid.Row="4"
 						  ColumnDefinitions="Auto, *"
 						  Height="30">
 						
@@ -385,6 +482,7 @@
 									 HorizontalContentAlignment="Center">
 								
 							</TextBox>
+							
 						</Grid>
 
 						<!-- This section is to output the BFS_Traversing -->
@@ -402,7 +500,7 @@
 					</Grid>
 					
 					<!-- This is the section for the input of the required data for the traversing (DFS) -->
-					<Grid Grid.Row="4"
+					<Grid Grid.Row="5"
 						  ColumnDefinitions="Auto, *"
 						  Height="30">
 						
@@ -433,7 +531,7 @@
 					</Grid>
 					
 					<!-- This is the sectio to input the node that the user wants it to be erased -->
-					<Grid Grid.Row="5"
+					<Grid Grid.Row="6"
 						  ColumnDefinitions="Auto, Auto, Auto"
 						  Height="30">
 						
@@ -477,7 +575,7 @@
 					</Grid>
 					
 					<!-- This sectionis for the input from the delete edge button -->
-					<Grid Grid.Row="6"
+					<Grid Grid.Row="7"
 						  Height="30"
 						  ColumnDefinitions="Auto, Auto, Auto, Auto, Auto">
 

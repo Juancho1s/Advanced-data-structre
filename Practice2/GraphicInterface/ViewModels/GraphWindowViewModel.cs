@@ -14,6 +14,7 @@ namespace GraphicInterface.ViewModels
             return showNodesL();
         }
 
+
         public string showNodesL()
         {
             return mG.showNodesList();
@@ -42,6 +43,18 @@ namespace GraphicInterface.ViewModels
         public string theShortestRoad(int startNode, int lastNdoe)
         {
             return mG.theShortestPath(startNode, lastNdoe);
+        }
+
+        public string theLongestPath(int startNode, int lastNode)
+        {
+            return mG.theLongestPath(startNode, lastNode);
+        }
+
+        public string getWeightL()
+        {
+            string aux = mG.getWeightL() + "";
+            mG.setWeightL(0);
+            return aux;
         }
 
         public string getWeight()

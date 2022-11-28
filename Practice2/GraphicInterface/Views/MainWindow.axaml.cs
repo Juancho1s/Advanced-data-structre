@@ -58,6 +58,10 @@ namespace GraphicInterface.Views
             BFS.Text = null;
             InitialNodeBFS.Text = null;
             InitialNodeDFS.Text = null;
+            FinalNodeTL.Text = null;
+            StartNodeTL.Text = null;
+            TheRoadTL.Text = null;
+            WeightTL.Text = null;
         }
 
         public void deleteNodeM(object sender, RoutedEventArgs e)
@@ -71,6 +75,7 @@ namespace GraphicInterface.Views
             nodesList.Text = m.showNodesL();
             insertMatrix(sender, e);
             theShortestPath(sender, e);
+            theLongestPath(sender, e);
             DFS_Trigger(sender, e);
             BFS_Trigger(sender, e);
             dNode.Text = null;
@@ -96,6 +101,7 @@ namespace GraphicInterface.Views
             m.edgeInsertion(sNode_1, sNode_2, weight);
             insertMatrix(sender, e);
             theShortestPath(sender, e);
+            theLongestPath(sender, e);
             BFS_Trigger(sender, e);
             DFS_Trigger(sender, e);
             indexStart.Text = null;
@@ -116,6 +122,22 @@ namespace GraphicInterface.Views
             sNode_2 = Int32.Parse(roadFinal.Text);
             theRoad.Text = m.theShortestRoad(sNode_1, sNode_2);
             weightTB.Text = "$" + m.getWeight();
+        }
+
+        public void theLongestPath(object sender, RoutedEventArgs e)
+        {
+            if (StartNodeTL.Text == null)
+            {
+                return;
+            }
+            if (FinalNodeTL.Text == null)
+            {
+                return;
+            }
+            sNode_1 = Int32.Parse(StartNodeTL.Text);
+            sNode_2 = Int32.Parse(FinalNodeTL.Text);
+            TheRoadTL.Text = m.theLongestPath(sNode_1, sNode_2);
+            WeightTL.Text = "$" + m.getWeightL();
         }
 
         public void BFS_Trigger(object sender, RoutedEventArgs e)
@@ -153,6 +175,7 @@ namespace GraphicInterface.Views
             m.deleteEdge(sNode_1, sNode_2);
             insertMatrix(sender, e);
             theShortestPath(sender, e);
+            theLongestPath(sender, e);
             DFS_Trigger(sender, e);
             BFS_Trigger(sender, e);
             dEdgeStart.Text = null;
