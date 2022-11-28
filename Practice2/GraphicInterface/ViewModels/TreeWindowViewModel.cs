@@ -17,6 +17,11 @@ namespace GraphicInterface.ViewModels
         public List<string> Nodes()
         {
             nodesCB.Clear();
+            if (mT.root[0] == null)
+            {
+                mT.nodesList.Clear();
+                return nodesCB;
+            }
             foreach (int i in mT.nodesList)
             {
                 nodesCB.Add(i.ToString());
@@ -24,13 +29,28 @@ namespace GraphicInterface.ViewModels
             return nodesCB;
         }
 
+        public void deleteNode(int nodeSpesified)
+        {
+            mT.delete(mT.root[0], nodeSpesified);
+
+        }
+
         public string searching(int searchedNode)
         {
             return mT.searchNode(mT.root[0], searchedNode);
         }
 
+        public void eraseRoot()
+        {
+            mT.root[0] = null;
+        }
+
         public string levels()
         {
+            if (mT.root[0] == null)
+            {
+                return "";
+            }
             return mT.levelCounter(mT.root[0]).ToString();
         }
 
@@ -63,16 +83,28 @@ namespace GraphicInterface.ViewModels
 
         public string In_OrderTraverse()
         {
+            if (mT.root[0] == null)
+            {
+                return "";
+            }
             return mT.traverseIn_Order(mT.root[0]);
         }
 
         public string Post_OrderTraverse()
         {
+            if (mT.root[0] == null)
+            {
+                return "";
+            }
             return mT.traversePost_Order(mT.root[0]);
         }
 
         public string Pre_OrderTraverse()
         {
+            if (mT.root[0] == null)
+            {
+                return "";
+            }
             return mT.traversePre_Order(mT.root[0]);
         }
 

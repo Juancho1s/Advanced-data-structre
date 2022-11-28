@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace trees_123_
-{    
+{
     internal class MethodsTree
     {
         /*Attributs*/
@@ -306,6 +299,7 @@ namespace trees_123_
             {
                 if (tree.leftNode.data == dNode)
                 {
+                    updateList(tree.leftNode);
                     tree.leftNode = null;
                     this.x = false;
                     return;
@@ -317,12 +311,26 @@ namespace trees_123_
             {
                 if (tree.rightNode.data == dNode) 
                 {
+                    updateList(tree.rightNode);
                     tree.rightNode = null;
                     this.x = false;
                     return;
                 }
                 deleteLooking(tree.rightNode, dNode);
             }            
+        }
+        private void updateList(NodeTree tree)
+        {
+            if (tree.leftNode != null)
+            {
+                updateList(tree.leftNode);
+
+            }
+            if (tree.rightNode != null)
+            {
+                updateList(tree.rightNode);
+            }
+            nodesList.Remove(tree.data);
         }
         ///////
 
@@ -370,21 +378,19 @@ namespace trees_123_
         }
         private List<int> road(NodeTree node)
         {
-            string message = "The road to the node is; ";
-            List<int> listReturn = new List<int>();
+            List<int> listReturn = new();
+            List<int> aux = new();
             while (node.rootNode != null)
             {
                 listReturn.Add(node.data);
                 node = node.rootNode;
             }
             listReturn.Add(node.data);
-            listReturn.Sort();
-            foreach (int i in listReturn)
+            for(int i = listReturn.Count - 1; i > -1; i--)
             {
-                message += i + "   ";
+                aux.Add(listReturn[i]);
             }
-            Console.WriteLine(message);
-            return listReturn;
+            return aux;
         }
         ///////
 

@@ -11,6 +11,7 @@ namespace GraphicInterface.Views
         TreeWindowViewModel vM = new();
 
         int newNode = 0;
+        int deleteSelectedInt = 0;
         string searchedNode = "";
         string father = "";
         string position = "";
@@ -57,9 +58,28 @@ namespace GraphicInterface.Views
                 position = "Defaul";
             }
             vM.insertion(newNode, father, position);
-            NodeInsertion.Items = null;
-            SearchB.Items = null;
+            eraseData(sender, e);
             update(sender, e);
+        }
+
+        public void eraseData(object sender, RoutedEventArgs e)
+        {
+            NodeInsertion.Items = null;
+            deleteSelected.Items = null;
+            SearchB.Items = null;
+            newNodeData.Text = null;
+            Road.Text = null;
+        }
+
+        public void deleteNode(object sender, RoutedEventArgs e)
+        {
+            if (deleteSelected.SelectedItem != null)
+            {
+                deleteSelectedInt = Int32.Parse((string)deleteSelected.SelectedItem);
+                vM.deleteNode(deleteSelectedInt);
+                eraseData(sender, e);
+                update(sender, e);
+            }
         }
 
         public void treeStructurePrint(object sender, RoutedEventArgs e)
@@ -91,6 +111,7 @@ namespace GraphicInterface.Views
         {
             SearchB.Items = vM.Nodes();
             NodeInsertion.Items = vM.Nodes();
+            deleteSelected.Items = vM.Nodes();
         }
 
         public void update(object sender, RoutedEventArgs e)
@@ -101,6 +122,14 @@ namespace GraphicInterface.Views
             Pre_OrderTraverse(sender, e);
             levelPrint(sender, e);
             NodesInsertin(sender, e);
+            searching(sender, e);
+        }
+
+        public void resetAllMethod(object sender, RoutedEventArgs e)
+        {
+            eraseData(sender, e); 
+            vM.eraseRoot();
+            update(sender, e);
         }
 
         public void windowGraph(object sender, RoutedEventArgs e)

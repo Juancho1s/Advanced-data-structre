@@ -5,6 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
 		Width="500" Height="300"
         x:Class="GraphicInterface.Views.TreeWindow"
+        Icon="/Assets/avalonia-logo.ico"
         Title="TreeWindow"
 		CanResize="False"
 		ScrollViewer.VerticalScrollBarVisibility="Visible"
@@ -52,7 +53,8 @@
 								HorizontalAlignment="Center"
 								Width="80"
 								Foreground="Cyan"
-								Background="Red">
+								Background="Red"
+								Click="resetAllMethod">
 							Reset All
 						</Button>
 						
@@ -179,6 +181,7 @@
 								VerticalAlignment="Center"
 								Width="160" Height="50"
 								Foreground="Cyan"
+								Click="deleteNode"
 								Background="Red">
 							Delete Node
 						</Button>
@@ -382,13 +385,11 @@
 							  VerticalAlignment="Center">
 
 							<!-- This is the Node spesified to be erased -->
-							<TextBox HorizontalAlignment="Center"
-									 VerticalAlignment="Center"
-									 VerticalContentAlignment="Center"
-									 Watermark="Node"
-									 Name="DeleteInput">
+							<ComboBox VerticalAlignment="Center"
+									  HorizontalAlignment="Center"
+									  Name="deleteSelected">
 
-							</TextBox>
+							</ComboBox>
 							
 						</Grid>
 
